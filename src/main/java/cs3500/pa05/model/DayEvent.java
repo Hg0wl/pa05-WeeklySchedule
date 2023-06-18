@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DayEvent {
 
   String name;
-  String description = "";
+  String description;
   DaysOfWeek day;
   String startTime;
   String durationMin;
-  String category = "";
+  String category;
 
   /**
    * Creates a new day event with the given information
@@ -52,18 +52,37 @@ public class DayEvent {
    * @param category String representation of the user created category for this event
    */
   @JsonCreator
+  public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin,
+                  String category) {
+    this(name, "", day, startTime, durationMin, category);
+  }
+
+  /**
+   * Convenience constructor for constructing a day event without a description
+   *
+   * @param name name of the event
+   * @param day the day of the week in which the event days place
+   * @param startTime the string representation of the start time of the event
+   * @param durationMin string representation of the
+   */
+  @JsonCreator
+  public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin) {
+    this(name, "", day, startTime, durationMin, "") ;
+  }
+
+  /**
+   * Creates a new day event with the given information
+   *
+   * @param name name of the event
+   * @param description description of the event
+   * @param day the day of the week in which the event days place
+   * @param startTime the string representation of the start time of the event
+   * @param durationMin string representation of the
+   */
+  @JsonCreator
   public DayEvent(
-      @JsonProperty("name") String name,
-      @JsonProperty("day") DaysOfWeek day,
-      @JsonProperty("startTime") String startTime,
-      @JsonProperty("durationMin") String durationMin,
-      @JsonProperty("category") String category
-  ) {
-    this.name = name;
-    this.day = day;
-    this.startTime = startTime;
-    this.durationMin = durationMin;
-    this.category = category;
+      String name, String description, DaysOfWeek day, String startTime, String durationMin) {
+    this(name, description, day, startTime, durationMin, "" );
   }
 
   /**

@@ -15,6 +15,9 @@ public class ControlJournal extends Application {
 
   private final ViewWeek view;
 
+  /**
+   * Creates a new Controller
+   */
   public ControlJournal() {
     this.view = new ViewWeekImpl();
   }

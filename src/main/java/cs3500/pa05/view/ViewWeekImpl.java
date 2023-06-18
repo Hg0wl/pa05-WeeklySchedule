@@ -11,6 +11,9 @@ public class ViewWeekImpl implements ViewWeek {
 
   private final FXMLLoader loader;
 
+  /**
+   * Creates a new ViewWeekImplementation
+   */
   public ViewWeekImpl() {
     this.loader = new FXMLLoader();
     this.loader.setLocation(getClass().getClassLoader().getResource("weekView.fxml"));

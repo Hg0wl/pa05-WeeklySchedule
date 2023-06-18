@@ -35,6 +35,17 @@ public class DayTask {
   }
 
   /**
+   * Convenience constructor to make a DayTask without a description
+   *
+   * @param name String name of the task
+   * @param day day of the week the task is on
+   * @param completeStatus whether the task itself is completed or not
+   */
+  public DayTask(String name, DaysOfWeek day, CompleteStatus completeStatus) {
+    this(name, "", day, completeStatus);
+  }
+
+  /**
    * Gets the name of this task
    *
    * @return the name
@@ -87,7 +98,6 @@ public class DayTask {
     if (!(other instanceof DayTask otherTask)) {
       return false;
     } else {
-      //DayTask otherTask = (DayTask) other;
       return otherTask.getName().equals(this.name)
           && otherTask.getDescription().equals(this.description)
           && otherTask.getDay().equals(this.day)
