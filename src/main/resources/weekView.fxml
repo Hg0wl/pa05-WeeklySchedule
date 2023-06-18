@@ -1,29 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="740.0" prefWidth="1350.0">
-      <children>
-         <BorderPane layoutX="-57.0" prefHeight="740.0" prefWidth="1240.0">
-            <right>
-               <VBox fx:id="taskQueue" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-            </right>
-            <bottom>
-               <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="881.0" progress="0.0" BorderPane.alignment="CENTER" />
-            </bottom>
-            <left>
-               <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                  <children>
-                     <VBox fx:id="weeklyOverview" prefHeight="200.0" prefWidth="100.0" />
-                     <VBox fx:id="notesAndQuotes" prefHeight="200.0" prefWidth="100.0" />
-                  </children>
-               </VBox>
-            </left>
-         </BorderPane>
-      </children></AnchorPane>
+    <AnchorPane prefHeight="594.0" prefWidth="943.0">
+        <children>
+            <BorderPane layoutY="-1.0" prefHeight="594.0" prefWidth="942.0">
+                <bottom>
+                    <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="616.0" progress="0.0"
+                                 BorderPane.alignment="CENTER"/>
+                </bottom>
+                <right>
+                    <VBox fx:id="taskQueue" alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                          BorderPane.alignment="CENTER">
+                        <children>
+                            <Label fx:id="taskQ" alignment="TOP_CENTER" contentDisplay="CENTER" text="TaskQueue"/>
+                            <Label fx:id="task1" text="Task 1"/>
+                            <Label fx:id="task2" text="Task 2"/>
+                            <Label fx:id="task3" text="Task 3"/>
+                            <Label fx:id="task4" text="Task 4"/>
+                            <Label fx:id="task5" text="Task 5"/>
+                            <Label fx:id="task6" text="Task 6"/>
+                            <Label fx:id="task7" text="Task 7"/>
+                            <Label fx:id="task8" text="Task 8"/>
+                            <Label fx:id="task9" text="Task 9"/>
+                            <Label fx:id="task10" text="Task 10"/>
+                            <Label fx:id="task11" text="Task 11"/>
+                            <Label fx:id="task12" text="Task 12"/>
+                            <Label fx:id="task13" text="Task 13"/>
+                        </children>
+                    </VBox>
+                </right>
+                <left>
+                    <VBox fx:id="WeeklyProgress" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                        <children>
+                            <Label fx:id="overviewHeader" text="Weekly Progress"/>
+                            <Label fx:id="totalEvents" text="Total Events"/>
+                            <Label fx:id="totalTasks" text="Total Tasks"/>
+                            <Label fx:id="percentTasksDone" text="Percent Tasks complete"/>
+                            <VBox fx:id="notesAndQuotes" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <Label fx:id="nqaHeader" text="Notes and Quotes"/>
+                                    <Label fx:id="note1" text="Note 1"/>
+                                    <Label fx:id="note2" text="Label"/>
+                                </children>
+                            </VBox>
+                        </children>
+                    </VBox>
+                </left>
+                <center>
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                        <children>
+                            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                <children>
+                                    <Button fx:id="createEvent" mnemonicParsing="false" prefHeight="105.0"
+                                            prefWidth="139.0" text="Create Event"/>
+                                    <Button fx:id="createTask" mnemonicParsing="false" prefHeight="105.0"
+                                            prefWidth="139.0" text="Create Task"/>
+                                    <Button fx:id="createCatagory" mnemonicParsing="false" prefHeight="105.0"
+                                            prefWidth="139.0" text="Create Catagory"/>
+                                    <Button fx:id="openFile" mnemonicParsing="false" prefHeight="105.0"
+                                            prefWidth="139.0" text="Open File"/>
+                                    <Button fx:id="save" mnemonicParsing="false" prefHeight="105.0" prefWidth="139.0"
+                                            text="Save"/>
+                                </children>
+                            </HBox>
+                            <Label prefHeight="59.0" prefWidth="147.0" text="NAME">
+                                <font>
+                                    <Font size="41.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="commitmentWarning" prefHeight="22.0" prefWidth="164.0"
+                                   text="COMMITMENT WARNING"/>
+                            <HBox fx:id="week" prefHeight="100.0" prefWidth="200.0">
+                                <children>
+                                    <VBox fx:id="sunday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="sunName" alignment="TOP_CENTER" text="SUNDAY"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox fx:id="monday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="monName" text="MONDAY"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox fx:id="tuesday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="tueName" text="TUESDAY"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox fx:id="wednesday" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="wedName" text="WEDNESDAY"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox fx:id="thursday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="thuName" text="THURSDAY"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox fx:id="friday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="friName" text="FRIDAY"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox fx:id="saturday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                        <children>
+                                            <Label fx:id="satName" text="SATURDAY"/>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </center>
+            </BorderPane>
+        </children>
+    </AnchorPane>
 </Scene>

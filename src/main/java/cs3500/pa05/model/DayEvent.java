@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DayEvent {
 
   String name;
-  String description;
+  String description = "";
   DaysOfWeek day;
   String startTime;
   String durationMin;
-  String category;
+  String category = "";
 
   /**
    * Creates a new day event with the given information
@@ -23,7 +23,7 @@ public class DayEvent {
    * @param day the day of the week in which the event days place
    * @param startTime the string representation of the start time of the event
    * @param durationMin string representation of the
-   * @param category
+   * @param category String representation of the user created category for this event
    */
   @JsonCreator
   public DayEvent(
@@ -45,11 +45,11 @@ public class DayEvent {
   /**
    * Convenience constructor for constructing a day event without a description
    *
-   * @param name
-   * @param day
-   * @param startTime
-   * @param durationMin
-   * @param category
+   * @param name name of the event
+   * @param day the day of the week in which the event days place
+   * @param startTime the string representation of the start time of the event
+   * @param durationMin string representation of the
+   * @param category String representation of the user created category for this event
    */
   @JsonCreator
   public DayEvent(
@@ -120,7 +120,19 @@ public class DayEvent {
     return this.category;
   }
 
-
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof DayEvent otherEvent)) {
+      return false;
+    } else {
+      return otherEvent.getName().equals(this.name)
+          && otherEvent.getDescription().equals(this.description)
+          && otherEvent.getDay().equals(this.day)
+          && otherEvent.getStartTime().equals(this.startTime)
+          && otherEvent.getDurationMin().equals(this.durationMin)
+          && otherEvent.getCategory().equals(this.category);
+    }
+  }
 
 
 

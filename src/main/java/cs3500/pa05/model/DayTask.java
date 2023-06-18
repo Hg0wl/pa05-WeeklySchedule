@@ -2,8 +2,6 @@ package cs3500.pa05.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import cs3500.pa05.model.CompleteStatus;
-import cs3500.pa05.model.DaysOfWeek;
 
 /**
  * Class for the tasks object
@@ -83,4 +81,18 @@ public class DayTask {
     }
 
   }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof DayTask otherTask)) {
+      return false;
+    } else {
+      //DayTask otherTask = (DayTask) other;
+      return otherTask.getName().equals(this.name)
+          && otherTask.getDescription().equals(this.description)
+          && otherTask.getDay().equals(this.day)
+          && otherTask.getCompleteStatus().equals(this.completeStatus);
+    }
+  }
+
 }

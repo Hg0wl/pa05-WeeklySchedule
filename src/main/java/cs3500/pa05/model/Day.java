@@ -77,7 +77,7 @@ public class Day {
    *
    * @return returns a deep copy of this day's list of tasks
    */
-  public ArrayList<DayTask> getTask() {
+  public ArrayList<DayTask> getTasks() {
     ArrayList<DayTask> copy = new ArrayList<>();
     for (DayTask task : this.tasks) {
       DayTask newTask = new DayTask(task.getName(), task.getDescription(), task.getDay(),
@@ -92,9 +92,8 @@ public class Day {
    *
    * @return this day's day of week
    */
-  public DaysOfWeek getDayOfWeek() {
+  public DaysOfWeek getDay() {
     return this.dayOfWeek;
   }
-
 
 }
