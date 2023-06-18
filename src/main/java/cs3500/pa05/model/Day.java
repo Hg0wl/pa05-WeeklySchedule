@@ -45,6 +45,9 @@ public class Day {
    * @param event the day event object to be added to the day
    */
   public void addEvent(DayEvent event) {
+    if (event.getDay() != this.dayOfWeek) {
+      throw new IllegalArgumentException(this.dayOfWeek.toString() + " is not the day specified for the event");
+    }
     this.events.add(event);
   }
 
@@ -69,6 +72,9 @@ public class Day {
    * @param task the DayTask to be added to this Day
    */
   public void addTask(DayTask task) {
+    if (task.getDay() != this.dayOfWeek) {
+      throw new IllegalArgumentException(this.dayOfWeek.toString() + " is not the day specified for the task");
+    }
     this.tasks.add(task);
   }
 
