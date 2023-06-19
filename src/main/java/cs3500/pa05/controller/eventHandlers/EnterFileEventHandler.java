@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
  */
 public class EnterFileEventHandler implements EventHandler<ActionEvent> {
 
+
+
   /**
    * Handles the event
    *

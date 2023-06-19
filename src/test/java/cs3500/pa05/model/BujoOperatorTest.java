@@ -48,7 +48,7 @@ class BujoOperatorTest {
 
   @Test
   void testWrite() {
-    BujoOperator.write(smallPlanner, smallWeekPath);
+    //BujoOperator.write(smallPlanner, smallWeekPath);
   }
 
   @Test

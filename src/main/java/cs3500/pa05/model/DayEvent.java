@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class DayEvent {
 
-  String name;
-  String description;
-  DaysOfWeek day;
-  String startTime;
-  String durationMin;
-  String category;
+  private final String name;
+  private final String description;
+  private final DaysOfWeek day;
+  private final String startTime;
+  private final String durationMin;
+  private final String category;
 
   /**
    * Creates a new day event with the given information

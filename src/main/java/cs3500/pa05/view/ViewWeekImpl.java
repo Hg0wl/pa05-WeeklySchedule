@@ -22,6 +22,7 @@ public class ViewWeekImpl implements ViewWeek {
     this.loader = new FXMLLoader();
 
     this.loader.setLocation(getClass().getClassLoader().getResource("weekView.fxml"));
+    this.loader.setController(controller);
   }
 
   @Override
