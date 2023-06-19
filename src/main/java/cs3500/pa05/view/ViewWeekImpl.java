@@ -25,7 +25,7 @@ public class ViewWeekImpl implements ViewWeek {
   }
 
   @Override
-  public Scene load() {
+  public Scene load() throws IllegalStateException {
     try {
       return this.loader.load();
     } catch (IOException e) {

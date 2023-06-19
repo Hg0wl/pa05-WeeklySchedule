@@ -1,5 +1,6 @@
 package cs3500.pa05.controller;
 
+import cs3500.pa05.model.DayEvent;
 import cs3500.pa05.view.ViewWeek;
 import cs3500.pa05.view.ViewWeekImpl;
 import java.util.ArrayList;
