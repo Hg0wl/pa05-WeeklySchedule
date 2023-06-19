@@ -122,4 +122,17 @@ class DayEventTest {
     assertTrue(wednesday.equals(wednesday));
   }
 
+  @Test
+  void testHashCode() {
+    String name = "event name";
+    DaysOfWeek day = DaysOfWeek.SUNDAY;
+    String startTime = "11:00";
+    String duration = "70";
+    String category = "event category";
+    int expected = name.hashCode() + day.hashCode() + startTime.hashCode() + duration.hashCode()
+        + category.hashCode();
+    DayEvent event = new DayEvent(name, day, startTime, duration, category);
+
+  }
+
 }

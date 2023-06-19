@@ -28,11 +28,6 @@
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="completeStatusField">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </TextField>
                <TextField fx:id="categoryField">
                   <VBox.margin>
                      <Insets top="10.0" />

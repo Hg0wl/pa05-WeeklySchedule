@@ -20,18 +20,33 @@ public class ControlJournal extends Application {
   private final ViewWeek view;
   private final ArrayList<DayEvent> eventsList = new ArrayList<>();
   private final WeekController weekView = new WeekController(eventsList);
-
+  private final ViewOpenFile openFileView;
+  private final OpenController openController = new OpenController();
 
   /**
    * Creates a new Controller
    */
   public ControlJournal() {
     this.view = new ViewWeekImpl(this.weekView);
+    this.openFileView = new OpenFileView(this.openController);
   }
 
   @Override
   public void start(Stage stage) {
     stage.setTitle("Weekly Journal");
+
+    //this.openFileView.setStage(stage);
+    try {
+      //Scene scene = this.openFileView.load();
+    //  stage.setScene(scene);
+     // this.openFileView.run();
+
+      stage.show();
+
+    } catch(IllegalStateException e) {
+      System.err.println("could not load open file layout");
+    }
+
     this.weekView.setStage(stage);
     try {
       Scene scene = this.view.load();

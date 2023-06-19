@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import javafx.concurrent.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -112,6 +113,17 @@ class DayTaskTest {
   void testEqualsDifObject() {
     String notTask = "not a task";
     assertFalse(sunday.equals(notTask));
+  }
+
+  @Test
+  void testHashCode() {
+    String name = "task name";
+    String desc = "task description";
+    DaysOfWeek day = DaysOfWeek.FRIDAY;
+    CompleteStatus isComplete = CompleteStatus.COMPLETE;
+    DayTask task = new DayTask(name, desc, day, isComplete);
+    int expected = name.hashCode() + desc.hashCode() + day.hashCode() + isComplete.hashCode();
+    assertEquals(expected, task.hashCode());
   }
 
 }

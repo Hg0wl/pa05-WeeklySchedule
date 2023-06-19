@@ -15,12 +15,12 @@
 
 <Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane prefHeight="594.0" prefWidth="924.0">
-        <BorderPane layoutY="-1.0" prefHeight="927.0" prefWidth="1398.0">
+        <BorderPane fx:id="borderPane" layoutY="-1.0" prefHeight="927.0" prefWidth="1398.0">
             <bottom>
                 <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="616.0" progress="0.0" BorderPane.alignment="CENTER" />
             </bottom>
             <right>
-                <VBox fx:id="taskQueue" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                <VBox fx:id="taskQueue" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
                     <Label fx:id="taskQ" alignment="TOP_CENTER" contentDisplay="CENTER" text="TaskQueue" />
                 </VBox>
             </right>

@@ -16,9 +16,12 @@ public class Day {
 
   /**
    * Creates a new day object with the given maximums and a day of the week
+   *
    * @param maxEvents maximum number of events in the day
    * @param maxTasks maximum number of events in the day
    * @param dayOfWeek this day object's Day of the week
+   * @param events list of DayEvents for this day
+   * @param tasks list of DayTasks for this day
    */
   @JsonCreator
   public Day(

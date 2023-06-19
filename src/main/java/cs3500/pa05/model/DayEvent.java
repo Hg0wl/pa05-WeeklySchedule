@@ -153,6 +153,12 @@ public class DayEvent {
     }
   }
 
+  @Override
+  public int hashCode() {
+    return this.name.hashCode() + this.description.hashCode() + this.day.hashCode()
+        + this.startTime.hashCode() + this.durationMin.hashCode() + this.category.hashCode();
+  }
+
 
 
 }

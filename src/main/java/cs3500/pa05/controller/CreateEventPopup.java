@@ -22,8 +22,6 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
 
   private DayEvent event;
 
-  private Stage stage;
-
 
   /**
    * Loads the popup FXML file and programmatically sets actions for the buttons and text fields
@@ -33,14 +31,11 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
    */
   public void displayPopup(List<DayEvent> listEvent, Stage stage) {
     // loads the FXML file for the event creation popup
-    this.stage = stage;
     this.loader = new FXMLLoader(getClass().getClassLoader()
         .getResource("createEvent.fxml"));
     this.loader.setController(this);
-    System.out.println("display popup - before load");
     try {
       stage.setScene(this.loader.load());
-      System.out.println("after load");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -70,7 +65,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
   private void handleEnterButton(List<DayEvent> listEvent) {
     DayEvent newEvent = this.createNew();
 
-    if (!Objects.isNull(newEvent)) {
+    if (Objects.nonNull(newEvent)) {
       listEvent.add(newEvent);
       this.hide();
     }
@@ -105,7 +100,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
         return new DayEvent(name, description, day, startTime, duration, category);
       }
     } catch (IllegalArgumentException e) {
-      System.out.println("invalid - clearing all");
+      //System.out.println("invalid - clearing all");
       this.clearAll();
       return null;
     }

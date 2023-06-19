@@ -2,6 +2,7 @@ package cs3500.pa05.model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import cs3500.pa05.model.json.JsonUtils;
 import cs3500.pa05.model.json.NotesJson;
 import cs3500.pa05.model.json.PlannerJson;
 import cs3500.pa05.model.json.WeekJson;
@@ -48,7 +49,9 @@ class BujoOperatorTest {
 
   @Test
   void testWrite() {
-    //BujoOperator.write(smallPlanner, smallWeekPath);
+    //System.out.println(JsonUtils.serializeRecord(smallWeek));
+
+    BujoOperator.write(smallPlanner, smallWeekPath);
   }
 
   @Test

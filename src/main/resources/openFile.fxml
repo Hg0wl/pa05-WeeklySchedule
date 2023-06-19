@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="294.0" prefWidth="443.0">
+      <children>
+         <VBox alignment="CENTER" layoutX="74.0" prefHeight="294.0" prefWidth="294.0">
+            <children>
+               <Label alignment="TOP_CENTER" prefHeight="51.0" prefWidth="184.0" text="WELCOME">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Label>
+               <Label alignment="TOP_CENTER" prefHeight="74.0" prefWidth="319.0" text="Welcome to your weekly journal!! Enter the name of a bujo journal file or the name of a new week you would like to create. Then hit submit!" textAlignment="CENTER" wrapText="true" />
+               <TextField fx:id="fileNameTextField" />
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                  <children>
+                     <Button fx:id="exit" mnemonicParsing="false" text="Exit" />
+                     <Button fx:id="submit" mnemonicParsing="false" text="Submit" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </children></AnchorPane>
+</Scene>

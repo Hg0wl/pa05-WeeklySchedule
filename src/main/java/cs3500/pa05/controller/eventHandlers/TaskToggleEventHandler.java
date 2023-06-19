@@ -8,6 +8,17 @@ import javafx.event.EventHandler;
  */
 public class TaskToggleEventHandler implements EventHandler<ActionEvent> {
 
+  DayTask task;
+
+  /**
+   * Handles the toggling of the checkbox
+   *
+   * @param task the day task of which the completion status is changing
+   */
+  public TaskToggleEventHandler(DayTask task) {
+    this.task = task;
+  }
+
   /**
    * Handles the event
    *
@@ -15,7 +26,7 @@ public class TaskToggleEventHandler implements EventHandler<ActionEvent> {
    */
   @Override
   public void handle(ActionEvent event) {
-    //TODO
+    task.toggleCompleteStatus();
   }
 
 }
