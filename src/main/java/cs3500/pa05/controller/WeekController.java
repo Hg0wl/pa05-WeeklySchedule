@@ -96,7 +96,7 @@ public class WeekController {
   /**
    * Initializes a week's GUI
    *
-   * @throws IllegalStateException <------ WRITE ------>
+   * @throws IllegalStateException if events are not able to be thrown
    */
   public void run() throws IllegalStateException {
     this.commitmentWarning.setText("");
@@ -104,6 +104,61 @@ public class WeekController {
     // call method to add events and tasks to the vbox
     this.addToWeek();
   }
+
+
+  private void addToWeek() {
+    this.clearDayBoxes();
+    this.addEvents();
+    this.addTasks();
+    this.addToQueue();
+  }
+
+  private void addToQueue() {
+    for (DayTask task : this.createdTasks) {
+      this.taskQueue.getChildren().add(TaskQueueLabel.create(task));
+    }
+  }
+
+  private void addEvents() {
+    for (DayEvent event : this.createdEvents) {
+      DaysOfWeek day = event.getDay();
+      switch (day) {
+        case SUNDAY -> this.sunday.getChildren().add(EventLabel.create(event));
+        case MONDAY -> this.monday.getChildren().add(EventLabel.create(event));
+        case TUESDAY -> this.tuesday.getChildren().add(EventLabel.create(event));
+        case WEDNESDAY -> this.wednesday.getChildren().add(EventLabel.create(event));
+        case THURSDAY -> this.thursday.getChildren().add(EventLabel.create(event));
+        case FRIDAY -> this.friday.getChildren().add(EventLabel.create(event));
+        default -> this.saturday.getChildren().add(EventLabel.create(event));
+      }
+    }
+  }
+
+  private void addTasks() {
+    for (DayTask task : this.createdTasks) {
+      DaysOfWeek day = task.getDay();
+      switch (day) {
+        case SUNDAY -> this.sunday.getChildren().add(TaskCheckbox.create(task));
+        case MONDAY -> this.monday.getChildren().add(TaskCheckbox.create(task));
+        case TUESDAY -> this.tuesday.getChildren().add(TaskCheckbox.create(task));
+        case WEDNESDAY -> this.wednesday.getChildren().add(TaskCheckbox.create(task));
+        case THURSDAY -> this.thursday.getChildren().add(TaskCheckbox.create(task));
+        case FRIDAY -> this.friday.getChildren().add(TaskCheckbox.create(task));
+        default -> this.saturday.getChildren().add(TaskCheckbox.create(task));
+      }
+    }
+  }
+
+  private void clearDayBoxes() {
+    List<VBox> vboxList = List.of(this.sunday, this.monday, this.tuesday,
+        this.wednesday, this.thursday, this.friday, this.saturday);
+
+    for (VBox days : vboxList) {
+      days.getChildren().remove(1, days.getChildren().size());
+    }
+  }
+
+
 
   /**
    * Sets this controller's stage to the given stage object
