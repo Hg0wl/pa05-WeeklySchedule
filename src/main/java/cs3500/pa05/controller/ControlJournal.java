@@ -1,9 +1,17 @@
 package cs3500.pa05.controller;
 
+import cs3500.pa05.model.BujoOperator;
+import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayEvent;
+import cs3500.pa05.model.json.NotesJson;
+import cs3500.pa05.model.json.PlannerJson;
+import cs3500.pa05.model.json.WeekJson;
 import cs3500.pa05.view.ViewWeek;
 import cs3500.pa05.view.ViewWeekImpl;
+import cs3500.pa05.view.ViewOpenFile;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -33,6 +41,16 @@ public class ControlJournal extends Application {
 
   @Override
   public void start(Stage stage) {
+
+//    Path path = null; //TODO - get path in here some how
+//    PlannerJson plannerContent = BujoOperator.read(path);
+//    WeekJson weekContent = plannerContent.week();
+//    NotesJson notesContent = plannerContent.notes();
+//    List<Day> listOfDays = weekContent.days();
+//    String name = weekContent.name();
+//    String notes = notesContent.notes();
+//    // TODO - send contents over to week controller?
+
     stage.setTitle("Weekly Journal");
 
     //this.openFileView.setStage(stage);

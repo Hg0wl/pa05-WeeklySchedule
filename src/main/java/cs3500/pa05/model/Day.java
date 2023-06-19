@@ -3,6 +3,7 @@ package cs3500.pa05.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a single day in the planner
@@ -11,8 +12,8 @@ public class Day {
   private final int maxEvents;
   private final int maxTasks;
   private final DaysOfWeek dayOfWeek;
-  private final ArrayList<DayEvent> events = new ArrayList<>();
-  private final ArrayList<DayTask> tasks = new ArrayList<>();
+  private final List<DayEvent> events;
+  private final List<DayTask> tasks;
 
   /**
    * Creates a new day object with the given maximums and a day of the week
@@ -27,10 +28,33 @@ public class Day {
   public Day(
       @JsonProperty("maxEvents") int maxEvents,
       @JsonProperty("maxTasks") int maxTasks,
+      @JsonProperty("DayOfWeek") DaysOfWeek dayOfWeek,
+      @JsonProperty("events") List<DayEvent> events,
+      @JsonProperty("tasks") List<DayTask> tasks) {
+    this.maxEvents = maxEvents;
+    this.maxTasks = maxTasks;
+    this.dayOfWeek = dayOfWeek;
+    this.events = events;
+    this.tasks = tasks;
+  }
+
+  /**
+   * Convenience constructor to create a day object with only maximums and a day of the week
+   *
+   * @param maxEvents maximum number of events in the day
+   * @param maxTasks maximum number of events in the day
+   * @param dayOfWeek this day object's Day of the week
+   */
+  @JsonCreator
+  public Day(
+      @JsonProperty("maxEvents") int maxEvents,
+      @JsonProperty("maxTasks") int maxTasks,
       @JsonProperty("DayOfWeek") DaysOfWeek dayOfWeek) {
     this.maxEvents = maxEvents;
     this.maxTasks = maxTasks;
     this.dayOfWeek = dayOfWeek;
+    this.events = new ArrayList<>();
+    this.tasks = new ArrayList<>();
   }
 
   /**
@@ -86,7 +110,7 @@ public class Day {
    *
    * @return returns a deep copy of this day's list of tasks
    */
-  public ArrayList<DayTask> getTasks() {
+  public List<DayTask> getTasks() {
     ArrayList<DayTask> copy = new ArrayList<>();
     for (DayTask task : this.tasks) {
       DayTask newTask = new DayTask(task.getName(), task.getDescription(), task.getDay(),
