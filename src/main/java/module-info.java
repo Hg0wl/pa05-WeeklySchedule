@@ -15,7 +15,6 @@ module cs3500.pa05 {
   exports cs3500.pa05.view;
   exports cs3500.pa05.controller;
   opens cs3500.pa05.controller to javafx.fxml;
-  opens cs3500.pa05.model to javafx.fxml;
-  exports cs3500.pa05.model.json;
+  //exports cs3500.pa05.model.json;
   opens cs3500.pa05.model.json to javafx.fxml;
 }

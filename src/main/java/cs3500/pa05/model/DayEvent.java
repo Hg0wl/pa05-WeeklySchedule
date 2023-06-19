@@ -51,7 +51,7 @@ public class DayEvent {
    * @param durationMin string representation of the
    * @param category String representation of the user created category for this event
    */
-  @JsonCreator
+  //@JsonCreator
   public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin,
                   String category) {
     this(name, "", day, startTime, durationMin, category);
@@ -65,7 +65,7 @@ public class DayEvent {
    * @param startTime the string representation of the start time of the event
    * @param durationMin string representation of the
    */
-  @JsonCreator
+ // @JsonCreator
   public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin) {
     this(name, "", day, startTime, durationMin, "") ;
   }
@@ -79,7 +79,7 @@ public class DayEvent {
    * @param startTime the string representation of the start time of the event
    * @param durationMin string representation of the
    */
-  @JsonCreator
+  //@JsonCreator
   public DayEvent(
       String name, String description, DaysOfWeek day, String startTime, String durationMin) {
     this(name, description, day, startTime, durationMin, "" );
