@@ -31,6 +31,7 @@ public class ControlJournal extends Application {
 
   @Override
   public void start(Stage stage) {
+    stage.setTitle("Weekly Journal");
     this.weekView.setStage(stage);
     try {
       Scene scene = this.view.load();
