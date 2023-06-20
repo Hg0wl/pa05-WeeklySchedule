@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -27,7 +28,7 @@ public abstract class AbstractPopup<T> extends Popup {
   @FXML
   protected Button enter;
   @FXML
-  protected TextField categoryField;
+  protected ComboBox<String> categoryField;
 
 
   /**
@@ -35,7 +36,7 @@ public abstract class AbstractPopup<T> extends Popup {
    *
    * @param list of T which will be updated by button presses in the popup
    */
-  abstract public void displayPopup(List<T> list, Stage stage);
+  abstract public void displayPopup(List<T> list, Stage stage, List<String> cats);
 
   /**
    * Attempts to create an object T out of the information provided in the fields.

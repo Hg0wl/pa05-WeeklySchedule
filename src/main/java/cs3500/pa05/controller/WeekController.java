@@ -10,6 +10,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -69,6 +70,9 @@ public class WeekController {
     this.createEvent.setOnAction(e -> handleCreateEvent());
     this.createTask.setOnAction(e -> handleCreateTask());
     this.borderPane.setOnMouseClicked(e -> handleReload());
+    this.createCategory.setOnAction(e -> handleCreateCategory());
+
+    this.weekName.setText(nameOfWeek.toUpperCase());
   }
 
   private void handleReload() {
@@ -77,14 +81,26 @@ public class WeekController {
     this.addToWeek();
   }
 
+  private void handleCreateCategory() {
+    Scene current = stage.getScene();
+    CreateCategoryPopup catPopup = new CreateCategoryPopup();
+    catPopup.setOnHidden(e -> {
+      stage.setScene(current);
+      this.handleReload();
+    });
+
+    catPopup.displayPopup(cats, stage);
+  }
+
   private void handleCreateEvent() {
     Scene current = stage.getScene();
     AbstractPopup<DayEvent> eventPopup = new CreateEventPopup();
     eventPopup.setOnHidden(e -> {
       stage.setScene(current);
-      this.addToWeek();});
+      this.addToWeek();
+      this.handleReload();});
 
-    eventPopup.displayPopup(createdEvents, stage);
+    eventPopup.displayPopup(createdEvents, stage, cats);
   }
 
   private void handleCreateTask() {
@@ -92,9 +108,10 @@ public class WeekController {
     AbstractPopup<DayTask> taskPopup = new CreateTaskPopup();
     taskPopup.setOnHidden(e -> {
       stage.setScene(current);
-      this.addToWeek();});
+      this.addToWeek();
+      this.handleReload();});
 
-    taskPopup.displayPopup(createdTasks, stage);
+    taskPopup.displayPopup(createdTasks, stage, cats);
 
   }
 
@@ -108,8 +125,9 @@ public class WeekController {
     this.initEvents();
     // call method to add events and tasks to the vbox
     this.addToWeek();
-  }
 
+    //this.monday.getChildren().add(new Hyperlink("www.oracle.com"));
+  }
 
   private void addToWeek() {
     this.clearDayBoxes();
@@ -173,9 +191,4 @@ public class WeekController {
   public void setStage(Stage stage) {
     this.stage = stage;
   }
-
-
-
-
-
 }

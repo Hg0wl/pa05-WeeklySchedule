@@ -1,5 +1,6 @@
 package cs3500.pa05.view;
 
+import cs3500.pa05.controller.OpenController;
 import cs3500.pa05.controller.WeekController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ public class ViewOpenFile {
    *
    * @param controller which is the controller that controls the week views
    */
-  public ViewOpenFile(WeekController controller) {
+  public ViewOpenFile(OpenController controller) {
     this.loader = new FXMLLoader();
 
     this.loader.setLocation(getClass().getClassLoader().getResource("openFile.fxml"));

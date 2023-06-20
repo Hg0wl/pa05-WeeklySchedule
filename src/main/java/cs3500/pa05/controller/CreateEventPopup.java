@@ -29,7 +29,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
    * @param listEvent of T which will be updated by button presses in the popup
    * @param stage the stage object on which this popup should be placed
    */
-  public void displayPopup(List<DayEvent> listEvent, Stage stage) {
+  public void displayPopup(List<DayEvent> listEvent, Stage stage, List<String> categories) {
     // loads the FXML file for the event creation popup
     this.loader = new FXMLLoader(getClass().getClassLoader()
         .getResource("createEvent.fxml"));

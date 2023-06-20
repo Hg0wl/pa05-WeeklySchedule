@@ -16,9 +16,6 @@
 <Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane prefHeight="594.0" prefWidth="924.0">
         <BorderPane fx:id="borderPane" layoutY="-1.0" prefHeight="927.0" prefWidth="1398.0">
-            <bottom>
-                <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="616.0" progress="0.0" BorderPane.alignment="CENTER" />
-            </bottom>
             <right>
                 <VBox fx:id="taskQueue" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
                     <Label fx:id="taskQ" alignment="TOP_CENTER" contentDisplay="CENTER" text="TaskQueue" />
@@ -37,7 +34,7 @@
             </left>
             <center>
                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                    <Label fx:id="weekName" prefHeight="59.0" prefWidth="147.0" text="NAME">
+                    <Label fx:id="weekName" alignment="CENTER" prefHeight="59.0" prefWidth="1000.0" text="NAME">
                         <font>
                             <Font size="41.0" />
                         </font>
@@ -48,51 +45,69 @@
                             <Label fx:id="sunName" alignment="TOP_CENTER" text="SUNDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                         </VBox>
                         <VBox fx:id="monday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="monName" text="MONDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                      <Label fx:id="sampleEvent" prefHeight="105.0" prefWidth="98.0" text="SampleEvent, sample Discription, @11:35, 65 min, #cat" wrapText="true" />
                         </VBox>
                         <VBox fx:id="tuesday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="tueName" text="TUESDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                      <CheckBox fx:id="sampleTask" mnemonicParsing="false" prefWidth="98.0" text="Sample Task, sample description, #notCat" wrapText="true" />
                         </VBox>
                         <VBox fx:id="wednesday" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="wedName" text="WEDNESDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                         </VBox>
                         <VBox fx:id="thursday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="thuName" text="THURSDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                         </VBox>
                         <VBox fx:id="friday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="friName" text="FRIDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                         </VBox>
                         <VBox fx:id="saturday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="satName" text="SATURDAY">
                         <font>
                            <Font size="15.0" />
-                        </font></Label>
+                        </font>
+                     </Label>
                         </VBox>
                   <ScrollBar fx:id="scrollBar" orientation="VERTICAL" />
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                     </HBox>
+               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                  <children>
+                     <ProgressBar fx:id="sundayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                     <ProgressBar fx:id="mondayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                     <ProgressBar fx:id="tuesdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                     <ProgressBar fx:id="wednesdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                     <ProgressBar fx:id="thursdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                     <ProgressBar fx:id="fridayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                     <ProgressBar fx:id="saturdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                  </children>
+               </HBox>
                 </VBox>
             </center>
          <top>

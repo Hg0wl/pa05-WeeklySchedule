@@ -11,38 +11,38 @@
 <Scene fx:id="eventPopup" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane prefHeight="343.0" prefWidth="284.0">
       <children>
-         <VBox prefHeight="344.0" prefWidth="146.0">
+         <VBox layoutX="37.0" prefHeight="344.0" prefWidth="286.0">
             <children>
-               <TextField fx:id="nameField">
+               <TextField fx:id="nameField" prefHeight="47.0" prefWidth="266.0">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="descriptionField">
+               <TextField fx:id="descriptionField" prefHeight="47.0" prefWidth="266.0">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="dayField">
+               <TextField fx:id="dayField" prefHeight="47.0" prefWidth="266.0">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="startTimeField">
+               <TextField fx:id="startTimeField" prefHeight="47.0" prefWidth="266.0">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="durationMinField">
+               <TextField fx:id="durationMinField" prefHeight="47.0" prefWidth="266.0">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="categoryField">
+               <ComboBox fx:id="categoryField" prefWidth="150.0"  promptText="Categories" visibleRowCount="3">
                   <VBox.margin>
-                     <Insets top="10.0" />
+                     <Insets top="30.0" />
                   </VBox.margin>
-               </TextField>
+               </ComboBox>
                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                   <children>
                      <Button fx:id="back" mnemonicParsing="false" text="Back" textFill="RED" />

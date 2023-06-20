@@ -17,6 +17,11 @@ public class BujoOperator {
 
   private static final ObjectMapper mapper = new ObjectMapper();
 
+  /**
+   *
+   * @param planner
+   * @param path
+   */
   public static void write(PlannerJson planner, Path path) {
     if (path.toString().endsWith(".bujo")) {
       JsonNode content = JsonUtils.serializeRecord(planner);

@@ -6,6 +6,9 @@ import cs3500.pa05.model.DaysOfWeek;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import javafx.beans.binding.ListExpression;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
@@ -15,7 +18,7 @@ import javafx.stage.Stage;
 public class CreateTaskPopup extends AbstractPopup<DayTask> {
 
   @Override
-  public void displayPopup(List<DayTask> listTask, Stage stage) {
+  public void displayPopup(List<DayTask> listTask, Stage stage, List<String> categories) {
     // load the FXML from the FXML file
     this.loader = new FXMLLoader(getClass().getClassLoader()
         .getResource("createTask.fxml"));
@@ -31,7 +34,8 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     this.nameField.setPromptText("*required* Enter a name for the Task");
     this.descriptionField.setPromptText("*optional* Enter a description for the Task");
     this.dayField.setPromptText("*required* Enter a day for the Task to be on");
-    this.categoryField.setPromptText("*optional* Enter a category for the Task");
+    this.categoryField.setItems(FXCollections.observableList(categories));
+
 
     this.enter.setOnAction(e -> handleEnterButton(listTask));
     this.back.setOnAction(e -> handleBackButton());
@@ -63,7 +67,7 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
   protected DayTask createNew() {
     String name = this.nameField.getCharacters().toString();
     String description = this.descriptionField.getCharacters().toString();
-    String category = this.categoryField.getCharacters().toString();
+    String category = this.categoryField.getValue();
 
     try {
       DaysOfWeek day = DaysOfWeek.getDayValue(this.dayField.getCharacters().toString());
@@ -85,6 +89,6 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     this.nameField.clear();
     this.descriptionField.clear();
     this.dayField.clear();
-    this.categoryField.clear();
+    this.categoryField.setValue("");
   }
 }

@@ -3,6 +3,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,10 +22,26 @@
                </Label>
                <Label alignment="TOP_CENTER" prefHeight="74.0" prefWidth="319.0" text="Welcome to your weekly journal!! Enter the name of a bujo journal file or the name of a new week you would like to create. Then hit submit!" textAlignment="CENTER" wrapText="true" />
                <TextField fx:id="fileNameTextField" />
-               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <HBox alignment="CENTER" prefHeight="56.0" prefWidth="294.0" spacing="50.0">
                   <children>
                      <Button fx:id="exit" mnemonicParsing="false" text="Exit" />
                      <Button fx:id="submit" mnemonicParsing="false" text="Submit" />
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER" prefHeight="75.0" prefWidth="294.0">
+                  <children>
+                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                           <Label text="Max Events" />
+                           <Spinner fx:id="eventMaxSpinner" prefHeight="30.0" prefWidth="65.0" />
+                        </children>
+                     </VBox>
+                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                           <Label text="Max Tasks" />
+                           <Spinner fx:id="taskMaxSpinner" prefHeight="30.0" prefWidth="65.0" />
+                        </children>
+                     </VBox>
                   </children>
                </HBox>
             </children>

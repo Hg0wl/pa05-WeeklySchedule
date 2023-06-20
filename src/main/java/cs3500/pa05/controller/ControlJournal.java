@@ -25,61 +25,53 @@ import javafx.stage.Stage;
  */
 public class ControlJournal extends Application {
 
-  private final ViewWeek view;
+  private ViewWeek view;
   private final ArrayList<DayEvent> eventsList = new ArrayList<>();
-  private final WeekController weekView = new WeekController(eventsList);
+  private WeekController weekController;
   private final ViewOpenFile openFileView;
-  private final OpenController openController = new OpenController();
+  private final List<PlannerJson> planners = new ArrayList<>();
+  private final OpenController openController = new OpenController(planners);
 
   /**
    * Creates a new Controller
    */
   public ControlJournal() {
-    this.view = new ViewWeekImpl(this.weekView);
-    this.openFileView = new OpenFileView(this.openController);
+
+    this.openFileView = new ViewOpenFile(this.openController);
   }
 
   @Override
   public void start(Stage stage) {
-
-//    Path path = null; //TODO - get path in here some how
-//    PlannerJson plannerContent = BujoOperator.read(path);
-//    WeekJson weekContent = plannerContent.week();
-//    NotesJson notesContent = plannerContent.notes();
-//    List<Day> listOfDays = weekContent.days();
-//    String name = weekContent.name();
-//    String notes = notesContent.notes();
-//    // TODO - send contents over to week controller?
-
     stage.setTitle("Weekly Journal");
 
-    //this.openFileView.setStage(stage);
+
     try {
-      //Scene scene = this.openFileView.load();
-    //  stage.setScene(scene);
-     // this.openFileView.run();
 
-      stage.show();
+      Stage openFileStage = new Stage();
+      this.openController.setStage(openFileStage);
+      openFileStage.setScene(this.openFileView.load());
+      this.openController.run();
+      openFileStage.showAndWait();
 
-    } catch(IllegalStateException e) {
-      System.err.println("could not load open file layout");
-    }
+      String weekName = planners.get(0).week().name();
 
-    this.weekView.setStage(stage);
-    try {
+      weekController = new WeekController(eventsList, weekName);
+      this.weekController.setStage(stage);
+      this.view = new ViewWeekImpl(this.weekController);
+
       Scene scene = this.view.load();
       stage.setScene(scene);
-      this.weekView.run();
+      this.weekController.run();
 
       stage.show();
+      System.out.println("after stage.show");
 
     } catch (IllegalStateException e) {
       System.err.println("could not load layout");
     }
-
   }
 
-  private void setupView() {
+  private void openWeek(Stage stage) {
 
   }
 
