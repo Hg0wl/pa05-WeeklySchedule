@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ComboBox?>
 <Scene fx:id="eventPopup" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="343.0" prefWidth="284.0">
+    <AnchorPane prefHeight="343.0" prefWidth="360.0">
       <children>
          <VBox layoutX="37.0" prefHeight="344.0" prefWidth="286.0">
             <children>

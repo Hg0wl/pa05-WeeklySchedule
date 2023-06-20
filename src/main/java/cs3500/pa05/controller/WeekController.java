@@ -53,14 +53,17 @@ public class WeekController {
   private List<DayTask> createdTasks = new ArrayList<>();
   private List<Day> days;
   private Stage stage;
+  private final String nameOfWeek;
+  private final List<String> cats = new ArrayList<>(List.of(""));
 
   /**
    * Constructor for WeekController
    *
    * @param createdEvents list of events that are displayed in the week
    */
-  public WeekController(List<DayEvent> createdEvents) {
+  public WeekController(List<DayEvent> createdEvents, String weekName) {
     this.createdEvents = createdEvents;
+    this.nameOfWeek = weekName;
   }
 
   /**
@@ -121,6 +124,7 @@ public class WeekController {
    * @throws IllegalStateException if events are not able to be thrown
    */
   public void run() throws IllegalStateException {
+
     this.commitmentWarning.setText("");
     this.initEvents();
     // call method to add events and tasks to the vbox

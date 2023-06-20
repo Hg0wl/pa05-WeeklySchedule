@@ -48,7 +48,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
         .setPromptText("*required* Enter a time for "
             + "the Event to start in the form HH:MM (24 hr time)");
     this.durationMinField.setPromptText("*required* Enter the duration of the Event in mins");
-    this.categoryField.setPromptText("*optional* Enter a category for the Event");
+    this.categoryField.setItems(FXCollections.observableList(categories));
 
     this.enter.setOnAction(e -> handleEnterButton(listEvent));
     this.back.setOnAction(e -> handleBackButton());
@@ -89,7 +89,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
     String description = this.descriptionField.getCharacters().toString();
     String startTime = this.startTimeField.getCharacters().toString();
     String duration = this.durationMinField.getCharacters().toString();
-    String category = this.categoryField.getCharacters().toString();
+    String category = this.categoryField.getValue();
 
     // if any validation test returns false,
     try {
@@ -113,7 +113,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
   protected void clearAll() {
     this.nameField.clear();
     this.descriptionField.clear();
-    this.categoryField.clear();
+    this.categoryField.setValue("");
     this.dayField.clear();
     this.startTimeField.clear();
     this.durationMinField.clear();
