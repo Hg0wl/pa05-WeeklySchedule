@@ -5,6 +5,7 @@ import cs3500.pa05.model.DaysOfWeek;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;

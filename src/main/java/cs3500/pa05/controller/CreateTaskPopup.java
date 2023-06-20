@@ -78,7 +78,6 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
       }
     } catch (IllegalArgumentException e) {
       this.clearAll();
-      System.out.println("clear all");
       return null;
 
     }
