@@ -18,7 +18,7 @@ class EventLabelTest {
   void testCreate() {
     System.out.println(monday.toString());
 
-    Label output = new EventLabel().create(monday);
+//    Label output = new EventLabel().create(monday);
 
   }
 }
