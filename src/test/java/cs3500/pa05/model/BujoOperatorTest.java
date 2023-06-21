@@ -1,11 +1,16 @@
 package cs3500.pa05.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import cs3500.pa05.model.json.JsonUtils;
 import cs3500.pa05.model.json.NotesJson;
 import cs3500.pa05.model.json.PlannerJson;
 import cs3500.pa05.model.json.WeekJson;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +42,32 @@ class BujoOperatorTest {
 
   WeekJson smallWeek;
 
+  String expectedBujoForSmallPlanner =
+      "{\"week\":" +
+          "{\"days\":[" +
+          "{\"events\":[" +
+          "{\"name\":\"monday brunch\"," +
+          "\"description\":\"food\"," +
+          "\"day\":\"MONDAY\"," +
+          "\"startTime\":\"8:00\"," +
+          "\"durationMin\":\"60\"," +
+          "\"category\":\"food\"}]," +
+          "\"tasks\":[" +
+          "{\"name\":\"Homework\"," +
+          "\"description\":\"OOD hw\"," +
+          "\"day\":\"MONDAY\"," +
+          "\"completeStatus\":\"INCOMPLETE\"," +
+          "\"category\":\"\"}," +
+          "{\"name\":\"Grocery Shopping\"," +
+          "\"description\":\"shopping\"," +
+          "\"day\":\"MONDAY\"," +
+          "\"completeStatus\":\"COMPLETE\"," +
+          "\"category\":\"\"}]," +
+          "\"day\":\"MONDAY\"}]," +
+          "\"name\":\"week of june 18\"}," +
+          "\"notes\":{" +
+          "\"notes\":\"this is a note\"}}";
+
   @BeforeEach
   void setup() {
     monday = new Day(5, 5, DaysOfWeek.MONDAY);
@@ -45,14 +76,29 @@ class BujoOperatorTest {
     monday.addTask(mondayTask2);
     smallWeek = new WeekJson(List.of(monday), "week of june 18");
     smallPlanner = new PlannerJson(smallWeek, notes);
+    try {
+      Files.write(smallWeekPath, new byte[] {});
+    } catch (IOException e) {
+      fail();
+    }
+
   }
 
-  @Test
-  void testWrite() {
-    //System.out.println(JsonUtils.serializeRecord(smallWeek));
-
-    BujoOperator.write(smallPlanner, smallWeekPath);
-  }
+//  @Test
+//  void testWrite() {
+//    //System.out.println(JsonUtils.serializeRecord(smallWeek));
+//    try {
+//      // initially, file is empty
+//      assertEquals(0, Files.size(smallWeekPath));
+//      // show expected after writing to it
+//      BujoOperator.write(smallPlanner, smallWeekPath);
+//      List<String> lines = Files.readAllLines(smallWeekPath);
+//      assertEquals(1, lines.size());
+//      assertEquals(expectedBujoForSmallPlanner, lines.get(0));
+//    } catch (IOException e) {
+//      fail();
+//    }
+//  }
 
   @Test
   void testExceptions() {

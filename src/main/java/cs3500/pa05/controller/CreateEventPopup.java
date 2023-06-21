@@ -22,6 +22,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
   private TextField durationMinField;
 
   private DayEvent event;
+  //List<String> categories;
 
 
   /**
@@ -31,6 +32,8 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
    * @param stage the stage object on which this popup should be placed
    */
   public void displayPopup(List<DayEvent> listEvent, Stage stage, List<String> categories) {
+    this.categories = categories;
+
     // loads the FXML file for the event creation popup
     this.loader = new FXMLLoader(getClass().getClassLoader()
         .getResource("createEvent.fxml"));
@@ -175,5 +178,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
 
     return dur <= totalMinLeft;
   }
+
+
 
 }

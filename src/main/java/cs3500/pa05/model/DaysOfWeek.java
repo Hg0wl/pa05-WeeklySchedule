@@ -44,7 +44,7 @@ public enum DaysOfWeek {
     if (DaysOfWeek.SUNDAY.name().equals(upCaseDay)) {
       return DaysOfWeek.SUNDAY;
     } else if (DaysOfWeek.MONDAY.name().equals(upCaseDay)) {
-      return DaysOfWeek.SUNDAY;
+      return DaysOfWeek.MONDAY;
     } else if (DaysOfWeek.TUESDAY.name().equals(upCaseDay)) {
       return DaysOfWeek.TUESDAY;
     } else if (DaysOfWeek.WEDNESDAY.name().equals(upCaseDay)) {

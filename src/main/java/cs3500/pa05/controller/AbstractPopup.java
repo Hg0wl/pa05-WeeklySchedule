@@ -30,6 +30,8 @@ public abstract class AbstractPopup<T> extends Popup {
   @FXML
   protected ComboBox<String> categoryField;
 
+  protected List<String> categories;
+
 
   /**
    * Initializes the FXMLLoader to the correct file path
@@ -50,5 +52,16 @@ public abstract class AbstractPopup<T> extends Popup {
    */
   abstract protected void clearAll();
 
-
+  protected void autoTagDetect() {
+    String input = this.nameField.getText();
+    if (input.startsWith("#")) {
+      String[] content = input.split(" ");
+      String category = content[0].substring(1);
+      int lengthOfFirstWord = category.length() + 1;
+      if (this.categories.contains(category) && !category.equals("")) {
+        this.categoryField.setValue(category);
+        this.nameField.setText(input.substring(lengthOfFirstWord));
+      }
+    }
+  }
 }

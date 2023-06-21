@@ -6,6 +6,10 @@ import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayEvent;
 import cs3500.pa05.model.DayTask;
 import cs3500.pa05.model.DaysOfWeek;
+import cs3500.pa05.model.json.NotesJson;
+import cs3500.pa05.model.json.PlannerJson;
+import cs3500.pa05.model.json.WeekJson;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -66,6 +70,21 @@ public class WeekController {
   private ProgressBar fridayBar;
   @FXML
   private ProgressBar saturdayBar;
+  @FXML
+  private Label sunLabel;
+  @FXML
+  private Label monLabel;
+  @FXML
+  private Label tueLabel;
+  @FXML
+  private Label wedLabel;
+  @FXML
+  private Label thuLabel;
+  @FXML
+  private Label friLabel;
+  @FXML
+  private Label satLabel;
+
   @FXML
   private Label totalEvents;
   @FXML
@@ -301,16 +320,19 @@ public class WeekController {
     }
   }
 
+
   private void updateProgressBar() {
     Map<DaysOfWeek, Integer> mapCompleted = this.getNumTasksByStatus(CompleteStatus.COMPLETE);
     Map<DaysOfWeek, Integer> mapIncomplete = this.getNumTasksByStatus(CompleteStatus.INCOMPLETE);
     Map<DaysOfWeek, ProgressBar> mapProgress = this.initializeProgressMap();
+    Map<DaysOfWeek, Label> mapLabelProgress = this.initializeProgressLabelMap();
 
     for (DaysOfWeek day : DaysOfWeek.values()) {
       int numCompleted = mapCompleted.get(day);
       int numTotal = mapCompleted.get(day) + mapIncomplete.get(day);
       double progress = (1.0 * numCompleted) / (1.0 * numTotal);
       mapProgress.get(day).setProgress(progress);
+      mapLabelProgress.get(day).setText(numCompleted + "/" + numTotal);
     }
   }
 
@@ -327,8 +349,10 @@ public class WeekController {
     }
     return mapping;
   }
+
   private Map<DaysOfWeek, ProgressBar> initializeProgressMap() {
     Map<DaysOfWeek, ProgressBar> map = new EnumMap<>(DaysOfWeek.class);
+
     map.put(DaysOfWeek.SUNDAY, sundayBar);
     map.put(DaysOfWeek.MONDAY, mondayBar);
     map.put(DaysOfWeek.TUESDAY, tuesdayBar);
@@ -337,7 +361,18 @@ public class WeekController {
     map.put(DaysOfWeek.FRIDAY, fridayBar);
     map.put(DaysOfWeek.SATURDAY, saturdayBar);
     return map;
+  }
 
+  private Map<DaysOfWeek, Label> initializeProgressLabelMap() {
+    Map<DaysOfWeek, Label> labelMap = new EnumMap<>(DaysOfWeek.class);
+    labelMap.put(DaysOfWeek.SUNDAY, sunLabel);
+    labelMap.put(DaysOfWeek.MONDAY, monLabel);
+    labelMap.put(DaysOfWeek.TUESDAY, tueLabel);
+    labelMap.put(DaysOfWeek.WEDNESDAY, wedLabel);
+    labelMap.put(DaysOfWeek.THURSDAY, thuLabel);
+    labelMap.put(DaysOfWeek.FRIDAY, friLabel);
+    labelMap.put(DaysOfWeek.SATURDAY, satLabel);
+    return labelMap;
   }
 
   private void updateOverview() {

@@ -125,4 +125,21 @@ public class Day {
     return this.day;
   }
 
+  /**
+   * Returns this day's max events
+   *
+   * @return the max
+   */
+  public int getMaxEvents() {
+    return this.maxEvents;
+  }
+
+  /**
+   * Returns this day's max tasks
+   *
+   * @return the max num of tasks
+   */
+  public int getMaxTasks() {
+    return this.maxTasks;
+  }
 }

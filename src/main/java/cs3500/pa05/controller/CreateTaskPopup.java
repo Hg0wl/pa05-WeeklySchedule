@@ -19,6 +19,8 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
 
   @Override
   public void displayPopup(List<DayTask> listTask, Stage stage, List<String> categories) {
+    this.categories = categories;
+
     // load the FXML from the FXML file
     this.loader = new FXMLLoader(getClass().getClassLoader()
         .getResource("createTask.fxml"));
@@ -29,6 +31,7 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     } catch (IOException e) {
       throw new RuntimeException("Unable to load Create Task Popup GUI");
     }
+    this.nameField.setOnKeyTyped(e -> this.autoTagDetect());
 
     // Set the prompt text for each text field
     this.nameField.setPromptText("*required* Enter a name for the Task");
@@ -90,4 +93,5 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     this.dayField.clear();
     this.categoryField.setValue("");
   }
+
 }

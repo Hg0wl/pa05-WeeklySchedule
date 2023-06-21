@@ -50,7 +50,9 @@ public class BujoOperator {
     }
     if (path.toString().endsWith(".bujo")) {
       try {
+        System.out.println("before parser");
         JsonParser parser = mapper.getFactory().createParser(path.toFile());
+        System.out.println("after parser");
         return parser.readValueAs(PlannerJson.class);
       } catch (IOException e) {
         throw new IllegalArgumentException(e.getMessage());
