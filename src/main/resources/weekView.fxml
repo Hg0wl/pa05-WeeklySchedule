@@ -30,7 +30,7 @@
                     <Label fx:id="totalTasks" text="Total Tasks" />
                     <Label fx:id="percentTasksDone" text="'%'Tasks complete" />
                     <VBox fx:id="notesAndQuotes" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                        <Label fx:id="nqaHeader" text="Notes and Quotes" />
+                        <Label text="Notes and Quotes" />
                     </VBox>
                 </VBox>
             </left>
@@ -41,15 +41,23 @@
                             <Font size="41.0" />
                         </font>
                     </Label>
-                    <Label fx:id="commitmentWarning" prefHeight="22.0" prefWidth="164.0" text="COMMITMENT WARNING" />
+                    <Label fx:id="commitmentWarning" prefHeight="22.0" prefWidth="394.0" style="-fx-text-fill: red;" wrapText="true"/>
                     <HBox fx:id="week" alignment="TOP_CENTER" prefHeight="676.0" prefWidth="1198.0" spacing="70.0">
-                        <VBox fx:id="sunday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                            <Label fx:id="sunName" alignment="TOP_CENTER" text="SUNDAY">
-                        <font>
-                           <Font size="15.0" />
-                        </font>
-                     </Label>
-                        </VBox>
+                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" pannable="true" prefHeight="663.0" prefWidth="128.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="666.0" prefWidth="121.0">
+                                    <children>
+                                        <VBox fx:id="sunday" alignment="TOP_CENTER" prefHeight="648.0" prefWidth="120.0">
+                                            <Label fx:id="sunName" alignment="TOP_CENTER" text="SUNDAY">
+                                                <font>
+                                                    <Font size="15.0" />
+                                                </font>
+                                            </Label>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
                         <VBox fx:id="monday" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <Label fx:id="monName" text="MONDAY">
                         <font>
@@ -66,10 +74,10 @@
                      </Label>
                      <CheckBox fx:id="sampleTask" mnemonicParsing="false" prefWidth="98.0" text="Sample Task, sample description, #notCat" wrapText="true" />
                         </VBox>
-                        <VBox fx:id="wednesday" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="wednesday" alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="120.0">
                             <Label fx:id="wedName" text="WEDNESDAY">
                         <font>
-                           <Font size="15.0" />
+                           <Font size="14.0" />
                         </font>
                      </Label>
                         </VBox>
@@ -101,13 +109,76 @@
                     </HBox>
                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                   <children>
-                     <ProgressBar fx:id="sundayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
-                     <ProgressBar fx:id="mondayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
-                     <ProgressBar fx:id="tuesdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
-                     <ProgressBar fx:id="wednesdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
-                     <ProgressBar fx:id="thursdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
-                     <ProgressBar fx:id="fridayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
-                     <ProgressBar fx:id="saturdayBar" prefHeight="11.0" prefWidth="147.0" progress="0.0" />
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="sundayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: cyan;" />
+                              <Label fx:id = "sunLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="mondayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: #00ffff;" />
+                              <Label fx:id="monLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="tuesdayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: cyan;" />
+                              <Label fx:id="tueLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="wednesdayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: cyan;" />
+                              <Label fx:id="wedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="thursdayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: cyan;" />
+                              <Label fx:id="thuLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="fridayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: cyan;" />
+                              <Label fx:id="friLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                          <children>
+                              <ProgressBar fx:id="saturdayBar" prefHeight="32.0" prefWidth="147.0" progress="0.0" style="-fx-accent: cyan;" />
+                              <Label fx:id="satLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="76.0" textAlignment="JUSTIFY">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </StackPane>
                   </children>
                </HBox>
                 </VBox>

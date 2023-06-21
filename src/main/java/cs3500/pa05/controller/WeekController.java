@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -75,7 +76,14 @@ public class WeekController {
   private Label weekName;
   @FXML
   private Button createCategory;
+  @FXML
+  private Button addNote;
+  @FXML
+  private Button save;
+  @FXML
+  private VBox notesAndQuotes;
 
+  private List<String> notes = new ArrayList<>(List.of(""));
   private final List<DayEvent> createdEvents;
   private List<DayTask> createdTasks;
   private List<Day> days;
@@ -108,6 +116,48 @@ public class WeekController {
     this.addNote.setOnAction(e -> handleAddNote());
     this.save.setOnAction(e -> handleSave());
     this.weekName.setText(nameOfWeek.toUpperCase());
+  }
+
+  private void handleSave() {
+    this.handleReload();
+    Map<DaysOfWeek, List<DayEvent>> listOfEventsForEachDay = this.mapEventsToDays();
+    Map<DaysOfWeek, List<DayTask>> listOfTasksForEachDay = this.mapTasksToDays();
+    List<Day> dayList = new ArrayList<Day>();
+    for (DaysOfWeek day : DaysOfWeek.values()) {
+      dayList.add(new Day(this.maxEvents, this.maxTasks, day,
+          listOfEventsForEachDay.get(day), listOfTasksForEachDay.get(day)));
+    }
+
+    WeekJson week = new WeekJson(dayList, this.nameOfWeek);
+    NotesJson notesJson = new NotesJson(this.notes.get(0));
+    PlannerJson planner = new PlannerJson(week, notesJson);
+    StringBuilder pathName = new StringBuilder(nameOfWeek).append(".bujo");
+    BujoOperator.write(planner, Path.of(pathName.toString()));
+  }
+
+  private Map<DaysOfWeek, List<DayEvent>> mapEventsToDays() {
+
+    Map<DaysOfWeek, List<DayEvent>> output = new EnumMap<>(DaysOfWeek.class);
+    for (DaysOfWeek day : DaysOfWeek.values()) {
+      output.put(day, new ArrayList<DayEvent>());
+    }
+    for (DayEvent event : this.createdEvents) {
+      DaysOfWeek curDay = event.getDay();
+      output.get(curDay).add(event);
+    }
+    return output;
+  }
+
+  private Map<DaysOfWeek, List<DayTask>> mapTasksToDays() {
+    Map<DaysOfWeek, List<DayTask>> output = new EnumMap<>(DaysOfWeek.class);
+    for (DaysOfWeek day : DaysOfWeek.values()) {
+      output.put(day, new ArrayList<DayTask>());
+    }
+    for (DayTask task : this.createdTasks) {
+      DaysOfWeek curDay = task.getDay();
+      output.get(curDay).add(task);
+    }
+    return output;
   }
 
   private void handleReload() {
