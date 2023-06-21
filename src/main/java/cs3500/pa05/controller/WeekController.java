@@ -1,7 +1,6 @@
 package cs3500.pa05.controller;
 
-import static java.lang.Float.NaN;
-
+import cs3500.pa05.model.BujoOperator;
 import cs3500.pa05.model.CompleteStatus;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayEvent;
@@ -11,11 +10,9 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
@@ -80,19 +77,23 @@ public class WeekController {
   private Button createCategory;
 
   private final List<DayEvent> createdEvents;
-  private List<DayTask> createdTasks = new ArrayList<>();
+  private List<DayTask> createdTasks;
   private List<Day> days;
   private Stage stage;
   private final String nameOfWeek;
-  private final List<String> cats = new ArrayList<>(List.of(""));
+  private final List<String> cats = new ArrayList<String>(List.of(""));
+  private int maxEvents;
+  private int maxTasks;
 
   /**
    * Constructor for WeekController
    *
    * @param createdEvents list of events that are displayed in the week
    */
-  public WeekController(List<DayEvent> createdEvents, String weekName) {
+  public WeekController(List<DayEvent> createdEvents, List<DayTask> createdTasks,
+                        String weekName) {
     this.createdEvents = createdEvents;
+    this.createdTasks = createdTasks;
     this.nameOfWeek = weekName;
   }
 
@@ -104,7 +105,8 @@ public class WeekController {
     this.createTask.setOnAction(e -> handleCreateTask());
     this.borderPane.setOnMouseClicked(e -> handleReload());
     this.createCategory.setOnAction(e -> handleCreateCategory());
-
+    this.addNote.setOnAction(e -> handleAddNote());
+    this.save.setOnAction(e -> handleSave());
     this.weekName.setText(nameOfWeek.toUpperCase());
   }
 
@@ -114,9 +116,11 @@ public class WeekController {
     this.addToWeek();
     this.updateProgressBar();
     this.updateOverview();
+    this.updateNotes();
   }
 
   private void handleCreateCategory() {
+    this.handleReload();
     Scene current = stage.getScene();
     CreateCategoryPopup catPopup = new CreateCategoryPopup();
     catPopup.setOnHidden(e -> {
@@ -128,6 +132,7 @@ public class WeekController {
   }
 
   private void handleCreateEvent() {
+    this.handleReload();
     Scene current = stage.getScene();
     AbstractPopup<DayEvent> eventPopup = new CreateEventPopup();
     eventPopup.setOnHidden(e -> {
@@ -139,6 +144,7 @@ public class WeekController {
   }
 
   private void handleCreateTask() {
+    this.handleReload();
     Scene current = stage.getScene();
     AbstractPopup<DayTask> taskPopup = new CreateTaskPopup();
     taskPopup.setOnHidden(e -> {
@@ -150,13 +156,32 @@ public class WeekController {
 
   }
 
+  private void handleAddNote() {
+    this.handleReload();
+    Scene current = stage.getScene();
+    CreateNotePopup notePopup = new CreateNotePopup();
+    notePopup.setOnHidden(e -> {
+      stage.setScene(current);
+      this.handleReload();
+    });
+
+    System.out.println("attempting to display note popup");
+    notePopup.displayPopup(notes, stage);
+    System.out.println("after displaying note popup");
+  }
+
   /**
    * Initializes a week's GUI
    *
-   * @throws IllegalStateException if events are not able to be thrown
+   * @param maxEvents integer representing the user set maximum number of events per day
+   * @param maxTasks integer representing the user set maximum number of tasks per day
+   * @throws IllegalStateException if events are not able to throw
    */
-  public void run() throws IllegalStateException {
+  public void run(int maxEvents, int maxTasks) throws IllegalStateException {
+    this.maxEvents = maxEvents;
+    this.maxTasks = maxTasks;
 
+    this.checkCommitment();
     this.commitmentWarning.setText("");
     this.initEvents();
     // call method to add events and tasks to the vbox
@@ -165,11 +190,20 @@ public class WeekController {
     //this.monday.getChildren().add(new Hyperlink("www.oracle.com"));
   }
 
+  private void checkCommitment() {
+    if (this.createdTasks.size() > maxTasks || this.createdEvents.size() > maxEvents) {
+      this.commitmentWarning.setText("COMMITMENT WARNING: You might have too much going on this week");
+    } else {
+      this.commitmentWarning.setText("");
+    }
+  }
+
   private void addToWeek() {
     this.clearDayBoxes();
     this.addEvents();
     this.addTasks();
     this.addToQueue();
+    this.checkCommitment();
   }
 
   private void addToQueue() {
@@ -285,6 +319,16 @@ public class WeekController {
 
     this.totalEvents.setText("Total Events: " + this.createdEvents.size());
 
+  }
+
+  private void updateNotes() {
+    System.out.println("update");
+
+    String note = this.notes.get(0);
+    this.notesAndQuotes.getChildren().remove(1, notesAndQuotes.getChildren().size());
+    Label notesLabel = new Label(note);
+    notesLabel.setWrapText(true);
+    this.notesAndQuotes.getChildren().add(notesLabel);
   }
 
   /**

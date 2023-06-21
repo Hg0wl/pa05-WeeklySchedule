@@ -41,6 +41,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
       throw new RuntimeException(e);
     }
 
+    this.nameField.setOnKeyTyped(e -> this.autoTagDetect());
     // sets the prompt text for each of the text fields
     this.nameField.setPromptText("*required* Enter a name for the Event");
     this.descriptionField.setPromptText("*optional* Enter a description for the Event");
@@ -95,7 +96,8 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
     // if any validation test returns false,
     try {
       DaysOfWeek day = DaysOfWeek.getDayValue(this.dayField.getCharacters().toString());
-      if (name.isEmpty() || !checkStartTime(startTime) || !checkDuration(startTime, duration)) {
+      if (name.isEmpty() || !checkStartTime(startTime) || !checkDuration(startTime, duration)
+          || Objects.isNull(category)) {
         throw new IllegalArgumentException("Invalid Inputs");
       } else {
         return new DayEvent(name, description, day, startTime, duration, category);

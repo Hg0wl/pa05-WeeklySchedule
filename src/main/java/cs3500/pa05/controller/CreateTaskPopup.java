@@ -71,7 +71,7 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
 
     try {
       DaysOfWeek day = DaysOfWeek.getDayValue(this.dayField.getCharacters().toString());
-      if (name.isEmpty()) {
+      if (name.isEmpty() || Objects.isNull(category)) {
         throw new IllegalArgumentException("Invalid Inputs");
       } else {
         return new DayTask(name, description, day, CompleteStatus.INCOMPLETE, category);

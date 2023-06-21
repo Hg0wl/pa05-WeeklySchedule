@@ -18,9 +18,10 @@ public class BujoOperator {
   private static final ObjectMapper mapper = new ObjectMapper();
 
   /**
+   * Writes the given record into the given file as a JSON format
    *
-   * @param planner
-   * @param path
+   * @param planner the record that contains all the information from the week
+   * @param path the path of the .bujo file to which this information will be written
    */
   public static void write(PlannerJson planner, Path path) {
     if (path.toString().endsWith(".bujo")) {
@@ -52,7 +53,7 @@ public class BujoOperator {
         JsonParser parser = mapper.getFactory().createParser(path.toFile());
         return parser.readValueAs(PlannerJson.class);
       } catch (IOException e) {
-        throw new IllegalArgumentException("Error reading the .bujo file");
+        throw new IllegalArgumentException(e.getMessage());
       }
     }
     throw new IllegalArgumentException("invalid path");

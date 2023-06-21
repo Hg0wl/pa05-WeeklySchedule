@@ -11,7 +11,7 @@ import java.util.List;
 public class Day {
   private final int maxEvents;
   private final int maxTasks;
-  private final DaysOfWeek dayOfWeek;
+  private final DaysOfWeek day;
   private final List<DayEvent> events;
   private final List<DayTask> tasks;
 
@@ -20,7 +20,7 @@ public class Day {
    *
    * @param maxEvents maximum number of events in the day
    * @param maxTasks maximum number of events in the day
-   * @param dayOfWeek this day object's Day of the week
+   * @param day this day object's Day of the week
    * @param events list of DayEvents for this day
    * @param tasks list of DayTasks for this day
    */
@@ -28,12 +28,12 @@ public class Day {
   public Day(
       @JsonProperty("maxEvents") int maxEvents,
       @JsonProperty("maxTasks") int maxTasks,
-      @JsonProperty("DayOfWeek") DaysOfWeek dayOfWeek,
+      @JsonProperty("day") DaysOfWeek day,
       @JsonProperty("events") List<DayEvent> events,
       @JsonProperty("tasks") List<DayTask> tasks) {
     this.maxEvents = maxEvents;
     this.maxTasks = maxTasks;
-    this.dayOfWeek = dayOfWeek;
+    this.day = day;
     this.events = events;
     this.tasks = tasks;
   }
@@ -45,14 +45,10 @@ public class Day {
    * @param maxTasks maximum number of events in the day
    * @param dayOfWeek this day object's Day of the week
    */
-  @JsonCreator
-  public Day(
-      @JsonProperty("maxEvents") int maxEvents,
-      @JsonProperty("maxTasks") int maxTasks,
-      @JsonProperty("DayOfWeek") DaysOfWeek dayOfWeek) {
+  public Day(int maxEvents, int maxTasks, DaysOfWeek dayOfWeek) {
     this.maxEvents = maxEvents;
     this.maxTasks = maxTasks;
-    this.dayOfWeek = dayOfWeek;
+    this.day = dayOfWeek;
     this.events = new ArrayList<>();
     this.tasks = new ArrayList<>();
   }
@@ -72,8 +68,8 @@ public class Day {
    * @param event the day event object to be added to the day
    */
   public void addEvent(DayEvent event) {
-    if (event.getDay() != this.dayOfWeek) {
-      throw new IllegalArgumentException(this.dayOfWeek.toString() + " is not the day specified for the event");
+    if (event.getDay() != this.day) {
+      throw new IllegalArgumentException(this.day.toString() + " is not the day specified for the event");
     }
     this.events.add(event);
   }
@@ -99,8 +95,8 @@ public class Day {
    * @param task the DayTask to be added to this Day
    */
   public void addTask(DayTask task) {
-    if (task.getDay() != this.dayOfWeek) {
-      throw new IllegalArgumentException(this.dayOfWeek.toString() + " is not the day specified for the task");
+    if (task.getDay() != this.day) {
+      throw new IllegalArgumentException(this.day.toString() + " is not the day specified for the task");
     }
     this.tasks.add(task);
   }
@@ -126,7 +122,7 @@ public class Day {
    * @return this day's day of week
    */
   public DaysOfWeek getDay() {
-    return this.dayOfWeek;
+    return this.day;
   }
 
 }

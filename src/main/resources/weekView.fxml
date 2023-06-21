@@ -13,6 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
 <Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane prefHeight="594.0" prefWidth="924.0">
         <BorderPane fx:id="borderPane" layoutY="-1.0" prefHeight="927.0" prefWidth="1398.0">
@@ -127,7 +129,7 @@
                      <Insets left="100.0" />
                   </HBox.margin>
                </Button>
-                     <Button fx:id="openFile" mnemonicParsing="false" prefHeight="105.0" prefWidth="139.0" text="Open File">
+                     <Button fx:id="addNote" mnemonicParsing="false" prefHeight="105.0" prefWidth="139.0" text="Add Note">
                   <HBox.margin>
                      <Insets left="100.0" />
                   </HBox.margin>
