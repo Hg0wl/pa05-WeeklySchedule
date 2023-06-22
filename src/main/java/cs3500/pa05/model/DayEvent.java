@@ -51,7 +51,6 @@ public class DayEvent {
    * @param durationMin string representation of the
    * @param category String representation of the user created category for this event
    */
-  //@JsonCreator
   public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin,
                   String category) {
     this(name, "", day, startTime, durationMin, category);
@@ -65,7 +64,6 @@ public class DayEvent {
    * @param startTime the string representation of the start time of the event
    * @param durationMin string representation of the
    */
- // @JsonCreator
   public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin) {
     this(name, "", day, startTime, durationMin, "");
   }
@@ -79,7 +77,6 @@ public class DayEvent {
    * @param startTime the string representation of the start time of the event
    * @param durationMin string representation of the
    */
-  //@JsonCreator
   public DayEvent(
       String name, String description, DaysOfWeek day, String startTime, String durationMin) {
     this(name, description, day, startTime, durationMin, "");
@@ -139,6 +136,12 @@ public class DayEvent {
     return this.category;
   }
 
+  /**
+   * Overrides equal method to compare this dayevent with supplied dayevent
+   *
+   * @param other the supplied dayevent
+   * @return true, if they are the same, false, otherwise.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof DayEvent otherEvent)) {
@@ -153,6 +156,11 @@ public class DayEvent {
     }
   }
 
+  /**
+   * Overrides hashcode, used for comparison in equals method
+   *
+   * @return the resulting hashcode value
+   */
   @Override
   public int hashCode() {
     return this.name.hashCode() + this.description.hashCode() + this.day.hashCode()

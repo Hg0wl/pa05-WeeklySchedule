@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Simple utils class used to hold static methods that help with serializing and deserializing JSON.
  */
 public class JsonUtils {
+
   /**
    * Converts a given record object to a JsonNode.
    *
@@ -19,7 +20,6 @@ public class JsonUtils {
       ObjectMapper mapper = new ObjectMapper();
       return mapper.convertValue(record, JsonNode.class);
     } catch (IllegalArgumentException e) {
-      System.out.println(record);
       throw new IllegalArgumentException("Given record cannot be serialized");
     }
   }

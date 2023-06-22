@@ -130,6 +130,12 @@ public class DayTask {
 
   }
 
+  /**
+   * Overrides equal method to compare this daytask with supplied daytask
+   *
+   * @param other the supplied daytask
+   * @return true, if they are the same, false, otherwise.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof DayTask otherTask)) {
@@ -143,6 +149,11 @@ public class DayTask {
     }
   }
 
+  /**
+   * Overrides hashcode, used for comparison in equals method
+   *
+   * @return the resulting hashcode value
+   */
   @Override
   public int hashCode() {
     return this.name.hashCode() + this.description.hashCode() + this.day.hashCode()

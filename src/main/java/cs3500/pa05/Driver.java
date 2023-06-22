@@ -14,8 +14,12 @@ public class Driver {
    */
   public static void main(String[] args) {
 
+    try {
+      Application.launch(ControlJournal.class, args);
+    } catch (Exception e) {
+      System.err.println("An error was encountered while running the application.");
+    }
 
-    Application.launch(ControlJournal.class, args);
 
   }
 }

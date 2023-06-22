@@ -20,17 +20,16 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
   private TextField startTimeField;
   @FXML
   private TextField durationMinField;
-
   private DayEvent event;
-  //List<String> categories;
 
 
   /**
    * Loads the popup FXML file and programmatically sets actions for the buttons and text fields
    *
-   * @param listEvent of T which will be updated by button presses in the popup
+   * @param listEvent of events which will be updated by button presses in the popup
    * @param stage the stage object on which this popup should be placed
    */
+  @Override
   public void displayPopup(List<DayEvent> listEvent, Stage stage, List<String> categories) {
     this.categories = categories;
 
@@ -60,26 +59,6 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
     this.show(stage);
   }
 
-  /**
-   * Handles when the enter button is pressed
-   *
-   * @param listEvent takes a list of events
-   */
-  private void handleEnterButton(List<DayEvent> listEvent) {
-    DayEvent newEvent = this.createNew();
-
-    if (Objects.nonNull(newEvent)) {
-      listEvent.add(newEvent);
-      this.hide();
-    }
-  }
-
-  /**
-   * Handles when the enter button is pressed
-   */
-  private void handleBackButton() {
-    this.hide();
-  }
 
   /**
    * Used to create a new DayEvent object. Returns null if arguments are invalid.
@@ -104,7 +83,6 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
         return new DayEvent(name, description, day, startTime, duration, category);
       }
     } catch (IllegalArgumentException e) {
-      //System.out.println("invalid - clearing all");
       this.clearAll();
       return null;
     }
@@ -133,7 +111,7 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
     int hours;
     int mins;
     if (time.length() == 5) {
-      if (!time.substring(2,3).equals(":")) {
+      if (!time.substring(2, 3).equals(":")) {
         return false;
       }
       int index = time.indexOf(":");

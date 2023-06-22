@@ -1,6 +1,7 @@
 package cs3500.pa05.controller.popups;
 
 import java.util.List;
+import java.util.Objects;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -76,13 +77,16 @@ public abstract class AbstractPopup<T> extends Popup {
    *
    * @return a new object T
    */
-  abstract protected T createNew();
+  protected abstract T createNew();
 
   /**
    * Clears all the fields
    */
   protected abstract void clearAll();
 
+  /**
+   * Auto-detects a category tag while the user types in the popup
+   */
   protected void autoTagDetect() {
     String input = this.nameField.getText();
     if (input.startsWith("#")) {
@@ -94,5 +98,26 @@ public abstract class AbstractPopup<T> extends Popup {
         this.nameField.setText(input.substring(lengthOfFirstWord));
       }
     }
+  }
+
+  /**
+   * Handles when the enter button is pressed
+   *
+   * @param listEvent takes a list of events
+   */
+  protected void handleEnterButton(List<T> listEvent) {
+    T newEvent = this.createNew();
+
+    if (Objects.nonNull(newEvent)) {
+      listEvent.add(newEvent);
+      this.hide();
+    }
+  }
+
+  /**
+   * Handles when the enter button is pressed
+   */
+  protected void handleBackButton() {
+    this.hide();
   }
 }

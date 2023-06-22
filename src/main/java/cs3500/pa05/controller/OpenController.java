@@ -52,7 +52,7 @@ public class OpenController {
   }
 
   /**
-   *
+   * Starts and runs the controller
    */
   public void run() {
     initEvents();
@@ -107,7 +107,6 @@ public class OpenController {
         maximums.add(planner.week().days().get(0).getMaxEvents());
         maximums.add(planner.week().days().get(0).getMaxTasks());
       }
-
     }
     stage.hide();
   }

@@ -15,6 +15,12 @@ import javafx.stage.Stage;
  */
 public class CreateTaskPopup extends AbstractPopup<DayTask> {
 
+  /**
+   * Loads the popup FXML file and programmatically sets actions for the buttons and text fields
+   *
+   * @param listTask of tasks which will be updated by button presses in the popup
+   * @param stage the stage object on which this popup should be placed
+   */
   @Override
   public void displayPopup(List<DayTask> listTask, Stage stage, List<String> categories) {
     this.categories = categories;
@@ -71,6 +77,9 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     }
   }
 
+  /**
+   * clears all the text field
+   */
   @Override
   protected void clearAll() {
     this.nameField.clear();

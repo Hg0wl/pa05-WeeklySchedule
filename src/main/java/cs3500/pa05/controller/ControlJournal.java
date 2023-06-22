@@ -9,7 +9,6 @@ import cs3500.pa05.view.ViewOpenFile;
 import cs3500.pa05.view.ViewPassword;
 import cs3500.pa05.view.ViewScene;
 import cs3500.pa05.view.ViewWeekImpl;
-import cs3500.pa05.view.ViewOpenFile;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
@@ -38,10 +37,17 @@ public class ControlJournal extends Application {
     this.viewOpenFile = new ViewOpenFile(this.openController);
   }
 
+  /**
+   * Starts the application
+   *
+   * @param stage the primary stage for this application, onto which
+   the application scene can be set.
+   Applications may create other stages, if needed, but they will not be
+   primary stages.
+   */
   @Override
   public void start(Stage stage) {
     stage.setTitle("Weekly Journal");
-
 
     try {
       this.openFile();
@@ -70,18 +76,18 @@ public class ControlJournal extends Application {
       this.weekController.run(maximums.get(0), maximums.get(1));
 
       stage.show();
-      System.out.println("after stage.show");
 
     } catch (IllegalStateException e) {
       System.err.println(e.getMessage());
-      //System.err.println("could not load layout - control journal");
     }
   }
 
-  private void openWeek(Stage stage) {
-
-  }
-
+  /**
+   * Extracts the events from the supplied planner json
+   *
+   * @param plannerJson the planner to parse through
+   * @return a list of day events found in the planner
+   */
   private List<DayEvent> extractEvents(PlannerJson plannerJson) {
     List<Day> days = plannerJson.week().days();
     List<DayEvent> events = new ArrayList<>();
@@ -91,6 +97,12 @@ public class ControlJournal extends Application {
     return events;
   }
 
+  /**
+   * Extracts the tasks from the supplied planner json
+   *
+   * @param plannerJson the planner to parse through
+   * @return a list of day tasks found in the planner
+   */
   private List<DayTask> extractTasks(PlannerJson plannerJson) {
     List<Day> days = plannerJson.week().days();
     List<DayTask> tasks = new ArrayList<>();
@@ -120,4 +132,18 @@ public class ControlJournal extends Application {
     splashStage.showAndWait();
   }
 
+  private void validatePassword(String actualPassword) {
+    this.returnedPasswords.clear();
+    PasswordController passwordController =
+        new PasswordController(actualPassword, this.returnedPasswords);
+    ViewScene passwordView = new ViewPassword(passwordController);
+
+    Stage passwordStage = new Stage();
+    passwordController.setStage(passwordStage);
+    passwordStage.setScene(passwordView.load());
+    passwordController.run();
+    passwordStage.showAndWait();
+
+
+  }
 }

@@ -35,6 +35,7 @@ import javafx.stage.Stage;
  */
 public class WeekController {
 
+  // vboxes for each day
   @FXML
   private VBox sunday;
   @FXML
@@ -51,8 +52,6 @@ public class WeekController {
   private VBox saturday;
   @FXML
   private Button createEvent;
-  @FXML
-  private Popup eventPopup;
   @FXML
   private Button createTask;
   @FXML
@@ -75,6 +74,7 @@ public class WeekController {
   private ProgressBar fridayBar;
   @FXML
   private ProgressBar saturdayBar;
+  // labels on top of each progress bar
   @FXML
   private Label sunLabel;
   @FXML
@@ -89,7 +89,6 @@ public class WeekController {
   private Label friLabel;
   @FXML
   private Label satLabel;
-
   @FXML
   private Label totalEvents;
   @FXML
@@ -148,6 +147,10 @@ public class WeekController {
     this.weekName.setText(nameOfWeek.toUpperCase());
   }
 
+  /**
+   * Handles saving the week by collecting all the information in the week, and
+   * writing to a file using the BujoOperator
+   */
   private void handleSave() {
     this.handleReload();
     Map<DaysOfWeek, List<DayEvent>> listOfEventsForEachDay = this.mapEventsToDays();
@@ -165,6 +168,11 @@ public class WeekController {
     BujoOperator.write(planner, Path.of(pathName.toString()));
   }
 
+  /**
+   * Helper that maps days of the week to a list of events associated to that day
+   *
+   * @return a mapping of days to list of events
+   */
   private Map<DaysOfWeek, List<DayEvent>> mapEventsToDays() {
 
     Map<DaysOfWeek, List<DayEvent>> output = new EnumMap<>(DaysOfWeek.class);
@@ -178,6 +186,11 @@ public class WeekController {
     return output;
   }
 
+  /**
+   * Helper that maps days of hte week to a list of tasks associated to that day
+   *
+   * @return a mapping of days to a list of tasks
+   */
   private Map<DaysOfWeek, List<DayTask>> mapTasksToDays() {
     Map<DaysOfWeek, List<DayTask>> output = new EnumMap<>(DaysOfWeek.class);
     for (DaysOfWeek day : DaysOfWeek.values()) {
@@ -190,6 +203,9 @@ public class WeekController {
     return output;
   }
 
+  /**
+   * Reloads and updates the week
+   */
   private void handleReload() {
     this.clearDayBoxes();
     this.taskQueue.getChildren().remove(1, taskQueue.getChildren().size());
@@ -199,6 +215,20 @@ public class WeekController {
     this.updateNotes();
   }
 
+  /**
+   * Helper that adds content to the week and warns the user if exceeded commitment numbers
+   */
+  private void addToWeek() {
+    this.clearDayBoxes();
+    this.addEvents();
+    this.addTasks();
+    this.addToQueue();
+    this.checkCommitment();
+  }
+
+  /**
+   * Handles what happens when the user clicks the create category button
+   */
   private void handleCreateCategory() {
     this.handleReload();
     Scene current = stage.getScene();
@@ -211,6 +241,9 @@ public class WeekController {
     catPopup.displayPopup(cats, stage);
   }
 
+  /**
+   * Handles what happens when the user clicks the create event button
+   */
   private void handleCreateEvent() {
     this.handleReload();
     Scene current = stage.getScene();
@@ -218,11 +251,14 @@ public class WeekController {
     eventPopup.setOnHidden(e -> {
       stage.setScene(current);
       this.addToWeek();
-      this.handleReload();});
+      this.handleReload(); });
 
     eventPopup.displayPopup(createdEvents, stage, cats);
   }
 
+  /**
+   * Handles what happens when the user clicks the create task button
+   */
   private void handleCreateTask() {
     this.handleReload();
     Scene current = stage.getScene();
@@ -233,9 +269,11 @@ public class WeekController {
       this.handleReload(); });
 
     taskPopup.displayPopup(createdTasks, stage, cats);
-
   }
 
+  /**
+   * Handles what happens when the user clicks the add note button
+   */
   private void handleAddNote() {
     this.handleReload();
     Scene current = stage.getScene();
@@ -244,10 +282,7 @@ public class WeekController {
       stage.setScene(current);
       this.handleReload();
     });
-
-    System.out.println("attempting to display note popup");
     notePopup.displayPopup(notes, stage);
-    System.out.println("after displaying note popup");
   }
 
 
@@ -280,20 +315,18 @@ public class WeekController {
     }
   }
 
-  private void addToWeek() {
-    this.clearDayBoxes();
-    this.addEvents();
-    this.addTasks();
-    this.addToQueue();
-    this.checkCommitment();
-  }
-
+  /**
+   * Helper that adds tasks to the queue panel
+   */
   private void addToQueue() {
     for (DayTask task : this.createdTasks) {
       this.taskQueue.getChildren().add(TaskQueueLabel.create(task));
     }
   }
 
+  /**
+   * Helper that adds events to the week
+   */
   private void addEvents() {
     for (DayEvent event : this.createdEvents) {
       DaysOfWeek day = event.getDay();
@@ -309,6 +342,9 @@ public class WeekController {
     }
   }
 
+  /**
+   * Helper that adds tasks to the week
+   */
   private void addTasks() {
     for (DayTask task : this.createdTasks) {
       DaysOfWeek day = task.getDay();
@@ -324,6 +360,9 @@ public class WeekController {
     }
   }
 
+  /**
+   * Handles clearing each day's boxes
+   */
   private void clearDayBoxes() {
     List<VBox> vboxList = List.of(this.sunday, this.monday, this.tuesday,
         this.wednesday, this.thursday, this.friday, this.saturday);
@@ -333,7 +372,9 @@ public class WeekController {
     }
   }
 
-
+  /**
+   * Handles updating the progress bar
+   */
   private void updateProgressBar() {
     Map<DaysOfWeek, Integer> mapCompleted = this.getNumTasksByStatus(CompleteStatus.COMPLETE);
     Map<DaysOfWeek, Integer> mapIncomplete = this.getNumTasksByStatus(CompleteStatus.INCOMPLETE);
@@ -349,6 +390,13 @@ public class WeekController {
     }
   }
 
+  /**
+   * Gets the number of tasks according to the complete status supplied
+   *
+   * @param status the status of the tasks to look for
+   * @return a mapping of the days of the week and the number of tasks
+   (that matches the supplied status) on that day
+   */
   private Map<DaysOfWeek, Integer> getNumTasksByStatus(CompleteStatus status) {
     Map<DaysOfWeek, Integer> mapping = new EnumMap<>(DaysOfWeek.class);
     for (DaysOfWeek days : DaysOfWeek.values()) {
@@ -363,6 +411,11 @@ public class WeekController {
     return mapping;
   }
 
+  /**
+   * Helper that creates a mapping between days of the week to their respective progress bar objects
+   *
+   * @return a mapping between days of the week and their progress bars
+   */
   private Map<DaysOfWeek, ProgressBar> initializeProgressMap() {
     Map<DaysOfWeek, ProgressBar> map = new EnumMap<>(DaysOfWeek.class);
 
@@ -376,6 +429,11 @@ public class WeekController {
     return map;
   }
 
+  /**
+   * Helper that creates a mapping between days of the week to their respective label
+   *
+   * @return a mapping of days of the week to labels
+   */
   private Map<DaysOfWeek, Label> initializeProgressLabelMap() {
     Map<DaysOfWeek, Label> labelMap = new EnumMap<>(DaysOfWeek.class);
     labelMap.put(DaysOfWeek.SUNDAY, sunLabel);
@@ -388,6 +446,9 @@ public class WeekController {
     return labelMap;
   }
 
+  /**
+   * Handles updating the overview panel
+   */
   private void updateOverview() {
     this.totalTasks.setWrapText(true);
     this.percentTasksDone.setWrapText(true);
@@ -419,9 +480,10 @@ public class WeekController {
 
   }
 
+  /**
+   * Handles updating the notes field
+   */
   private void updateNotes() {
-    System.out.println("update");
-
     String note = this.notes.get(0);
     this.notesAndQuotes.getChildren().remove(1, notesAndQuotes.getChildren().size());
     Label notesLabel = new Label(note);

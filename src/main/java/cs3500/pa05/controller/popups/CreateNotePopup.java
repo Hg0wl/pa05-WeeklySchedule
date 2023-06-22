@@ -33,18 +33,12 @@ public class CreateNotePopup extends Popup {
    */
   public void displayPopup(List<String> note, Stage stage) {
     this.note = note;
-    System.out.println("attempting ot set loader");
     loader = new FXMLLoader(getClass().getClassLoader().getResource("createNotes.fxml"));
     this.loader.setController(this);
 
-    System.out.println("loader set");
     try {
-      System.out.println("attempting to set scene");
       stage.setScene(this.loader.load());
-      System.out.println("set scene");
     } catch (IOException e) {
-      System.out.println("could not set scene");
-
       throw new RuntimeException(e.getMessage());
     }
 
