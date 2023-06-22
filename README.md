@@ -32,7 +32,9 @@ In attempt to keep our design open to extension but closed for modification, we 
 classes. In our View, we have a ViewScene interface that all of our View components implements. The contract that the
 interface promises is that each of these classes have a load() method. This way, in the future, if someone wanted to
 implement another view, they would be able to implement this class and extend the project that way, rather than
-modifying one of our pre-existing classes to force another view. In our Controller, [[[[[[[......]]]]]]]
+modifying one of our pre-existing classes to force another view. In our Controller, we have a ControlScene interface
+which each of our controllers implement. This interface has the .run() method, and allows for extensibility if
+we wanted to create more controllers for different purposes. 
 
 # Liskov's Substitution Principle:
 We applied Liskov's substitution principle when designing our abstract classes. The main example would be our
@@ -55,4 +57,15 @@ controller for the FXML loader and allow the set class to control the loaded FXM
 views could take in any ControlScene implementations. 
 
 
-How to extend program further (with features we did not decide to implement): 
+# How to extend program further (with features we did not decide to implement): 
+One feature that we didn't decide to implement was Vertical Layout. To implement this, we could create another FXML
+file with the vertical layout, and contains the exact same @FXML annotations as our current Horizontal Layout, just
+in a different format. Then, we could create a new controller that determines what layout to load, and then use
+the appropriate FXML loader tied to the correct .fxml file, and use the same week controller we've been using. Another
+feature with a similar solution to extend our program is the Week Start quality of life feature. We would just create 
+another .fxml file with the same @FXML annotations for all the objects, but different layout (moving all the days
+of the week to the left by one, and putting sunday at the end). Another controller can be implemented in a very similar
+way to our week controller, but has multiple FXML loaders for the appropriate layout. Another feature is the menu bar. 
+We could create a new .fxml file that incorporates this feature. Then, we could have a new class that supports this
+feature, and hold a delegate object to our old week controller so that we can still run the currently-implemented design
+in addition to the additional feature. 
