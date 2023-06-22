@@ -14,21 +14,51 @@ import javafx.stage.Stage;
  */
 public abstract class AbstractPopup<T> extends Popup {
 
+  /**
+   * loader for fxml file
+   */
   protected FXMLLoader loader;
 
+  /**
+   * text field that gets the name from the popup
+   */
   @FXML
   protected TextField nameField;
+
+  /**
+   * text field that gets the description from the popup
+   */
   @FXML
   protected TextField descriptionField;
+
+  /**
+   * text field that gets the day from the popup
+   */
   @FXML
   protected TextField dayField;
+
+
+  /**
+   * button to go back to week view
+   */
   @FXML
   protected Button back;
+
+  /**
+   * button to submit the popups info
+   */
   @FXML
   protected Button enter;
+
+  /**
+   * combo box containing the categories available
+   */
   @FXML
   protected ComboBox<String> categoryField;
 
+  /**
+   * list of categories
+   */
   protected List<String> categories;
 
 
@@ -36,6 +66,8 @@ public abstract class AbstractPopup<T> extends Popup {
    * Initializes the FXMLLoader to the correct file path
    *
    * @param list of T which will be updated by button presses in the popup
+   * @param stage stage that is going to be displayed
+   * @param cats list of categories
    */
   public abstract void displayPopup(List<T> list, Stage stage, List<String> cats);
 

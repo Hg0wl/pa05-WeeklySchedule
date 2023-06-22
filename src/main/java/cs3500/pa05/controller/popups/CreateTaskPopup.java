@@ -32,9 +32,11 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     this.nameField.setOnKeyTyped(e -> this.autoTagDetect());
 
     // Set the prompt text for each text field
-    this.nameField.setPromptText("*required* Enter a name for the Task");
-    this.descriptionField.setPromptText("*optional* Enter a description for the Task");
-    this.dayField.setPromptText("*required* Enter a day for the Task to be on");
+    this.nameField.setPromptText("* Enter a name for the Task");
+    this.descriptionField.setPromptText("Enter a description for the Task");
+    //this.descriptionField.
+    //this.descriptionField.setTextFill(Color.GREEN);
+    this.dayField.setPromptText("* Enter a day for the Task to be on");
     this.categoryField.setItems(FXCollections.observableList(categories));
 
 

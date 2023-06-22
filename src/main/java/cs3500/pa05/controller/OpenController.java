@@ -43,6 +43,7 @@ public class OpenController {
    * Handles the opening of files from the open file view
    *
    * @param listPlanner the list of planner sent by the journal controller
+   * @param maximums the list of max events and max tasks
    */
   public OpenController(List<PlannerJson> listPlanner, List<Integer> maximums) {
     this.listPlanner = listPlanner;
@@ -113,7 +114,8 @@ public class OpenController {
 
   /**
    * Set's this controller's stage to the given
-   * @param stage
+   *
+   * @param stage the stage that we want to use
    */
   public void setStage(Stage stage) {
     this.stage = stage;

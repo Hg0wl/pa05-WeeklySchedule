@@ -13,16 +13,19 @@
 <?import javafx.scene.text.Font?>
 
 <Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="294.0" prefWidth="400.0">
+   <AnchorPane prefHeight="294.0" prefWidth="400.0" style="-fx-background-color: radial-gradient(focus-angle 291deg , focus-distance 59% , center 50% 50% , radius 55% , #50889D, #6a5acd);;">
       <children>
          <VBox alignment="CENTER" layoutY="8.0">
             <children>
-               <Label alignment="CENTER" prefHeight="51.0" prefWidth="184.0" text="WELCOME">
+               <Label alignment="CENTER" prefHeight="51.0" prefWidth="138.0" text="WELCOME" textFill="#e1e1e1">
                   <font>
-                     <Font size="24.0" />
+                     <Font name="Bookman Old Style Bold" size="24.0" />
                   </font>
                </Label>
-               <Label alignment="TOP_CENTER" layoutX="20.0" prefHeight="74.0" prefWidth="319.0" text="Welcome to your weekly journal!! Enter the name of a bujo journal file or the name of a new week you would like to create. Then hit submit!" textAlignment="CENTER" wrapText="true" />
+               <Label alignment="TOP_CENTER" layoutX="20.0" prefHeight="74.0" prefWidth="319.0" text="Welcome to your weekly journal!! Enter the name of a bujo journal file or the name of a new week you would like to create. Then hit submit!" textAlignment="CENTER" textFill="#e1e1e1" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Label>
                <TextField fx:id="fileNameTextField" prefWidth="250.0" scaleX="0.88">
                   <VBox.margin>
                      <Insets />
@@ -30,25 +33,31 @@
                </TextField>
                <HBox alignment="CENTER" prefHeight="56.0" prefWidth="294.0" spacing="20.0">
                   <children>
-                     <Button fx:id="exit" mnemonicParsing="false" text="Exit" />
-                     <Button fx:id="submit" mnemonicParsing="false" text="Submit" />
+                     <Button fx:id="exit" mnemonicParsing="false" style="-fx-background-color: red;" text="Exit" textFill="#e1e1e1" />
+                     <Button fx:id="submit" mnemonicParsing="false" style="-fx-background-color: #2cbf07;" text="Submit" textFill="#e1e1e1" />
                   </children>
                </HBox>
                <HBox alignment="CENTER" prefHeight="75.0" prefWidth="400.0" spacing="15.0">
                   <children>
                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Max Events" />
+                           <Label text="Max Events" textFill="#b48725">
+                              <font>
+                                 <Font name="System Italic" size="12.0" />
+                              </font></Label>
                            <Spinner fx:id="eventMaxSpinner" editable="true" prefHeight="30.0" prefWidth="65.0" />
                         </children>
                      </VBox>
                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Max Tasks" />
+                           <Label text="Max Tasks" textFill="#b48725">
+                              <font>
+                                 <Font name="System Italic" size="12.0" />
+                              </font></Label>
                            <Spinner fx:id="taskMaxSpinner" editable="true" prefHeight="30.0" prefWidth="65.0" />
                         </children>
                      </VBox>
-                     <CheckBox fx:id="overrideCheckbox" prefHeight="30" prefWidth="200" text="Override Previous Maximums">
+                     <CheckBox fx:id="overrideCheckbox" prefHeight="30" prefWidth="200" text="Override Previous Maximums" textFill="#b48725">
                      </CheckBox>
                   </children>
                </HBox>

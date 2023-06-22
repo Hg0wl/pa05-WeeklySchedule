@@ -3,55 +3,51 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ComboBox?>
 <Scene fx:id="eventPopup" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="343.0" prefWidth="360.0">
+   <AnchorPane prefHeight="343.0" prefWidth="360.0" style="-fx-background-color: radial-gradient(center 30% 70% , radius 100% , #50889D, #6a5acd);;">
       <children>
          <VBox layoutX="37.0" prefHeight="344.0" prefWidth="286.0">
             <children>
-               <TextField fx:id="nameField" prefHeight="47.0" prefWidth="266.0">
+               <TextField fx:id="nameField" prefHeight="47.0" prefWidth="266.0" style="-fx-background-color: #86D8C3; -fx-prompt-text-fill: blue; -fx-text-fill: black;">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="descriptionField" prefHeight="47.0" prefWidth="266.0">
+               <TextField fx:id="descriptionField" prefHeight="47.0" prefWidth="266.0" style="-fx-background-color: #86D8C3; -fx-prompt-text-fill: blue; -fx-text-fill: black;">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="dayField" prefHeight="47.0" prefWidth="266.0">
+               <TextField fx:id="dayField" prefHeight="47.0" prefWidth="266.0" style="-fx-background-color: #86D8C3; -fx-prompt-text-fill: blue; -fx-text-fill: black;">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="startTimeField" prefHeight="47.0" prefWidth="266.0">
+               <TextField fx:id="startTimeField" prefHeight="47.0" prefWidth="266.0" style="-fx-background-color: #86D8C3; -fx-prompt-text-fill: blue; -fx-text-fill: black;">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <TextField fx:id="durationMinField" prefHeight="47.0" prefWidth="266.0">
+               <TextField fx:id="durationMinField" prefHeight="47.0" prefWidth="266.0" style="-fx-background-color: #86D8C3; -fx-prompt-text-fill: blue; -fx-text-fill: black;">
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
                </TextField>
-               <ComboBox fx:id="categoryField" prefWidth="150.0"  promptText="Categories" visibleRowCount="3">
+               <ComboBox fx:id="categoryField" prefWidth="150.0" promptText="Categories" style="-fx-background-color: #CAF1E7;" visibleRowCount="3">
                   <VBox.margin>
                      <Insets top="30.0" />
                   </VBox.margin>
                </ComboBox>
-               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                   <children>
-                     <Button fx:id="back" mnemonicParsing="false" text="Back" textFill="RED" />
-                     <Button fx:id="enter" mnemonicParsing="false" text="Enter" textFill="#32fc00">
-                        <HBox.margin>
-                           <Insets left="20.0" />
-                        </HBox.margin>
-                     </Button>
+                     <Button fx:id="back" mnemonicParsing="false" style="-fx-background-color: rEd;" text="Back" textFill="#e1e1e1" />
+                     <Button fx:id="enter" mnemonicParsing="false" style="-fx-background-color: #2cbf07;" text="Enter" textFill="#e1e1e1" />
                   </children>
                </HBox>
             </children>

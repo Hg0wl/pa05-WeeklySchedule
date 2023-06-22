@@ -122,6 +122,9 @@ public class WeekController {
    * Constructor for WeekController
    *
    * @param createdEvents list of events that are displayed in the week
+   * @param createdTasks list of tasks that are displayed in the week
+   * @param weekName given name of the week
+   * @param categories list of categories
    */
   public WeekController(List<DayEvent> createdEvents, List<DayTask> createdTasks,
                         String weekName, List<String> categories, String password)  {
@@ -246,6 +249,7 @@ public class WeekController {
     notePopup.displayPopup(notes, stage);
     System.out.println("after displaying note popup");
   }
+
 
   /**
    * Initializes a week's GUI

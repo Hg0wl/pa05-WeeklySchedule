@@ -11,24 +11,24 @@
 <?import javafx.scene.text.Font?>
 
 <Scene fx:id="categoryPopup" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="260.0" prefWidth="360.0">
+    <AnchorPane prefHeight="260.0" prefWidth="360.0" style="-fx-background-color: radial-gradient(focus-angle 291deg , focus-distance 59% , center 50% 50% , radius 55% , #50889D, #6a5acd);">
         <children>
             <VBox alignment="TOP_CENTER" layoutX="37.0" prefHeight="283.0" prefWidth="286.0">
                 <children>
-                    <Label prefHeight="118.0" prefWidth="260.0" text="Enter one word to be the new category" textAlignment="CENTER" wrapText="true">
+                    <Label prefHeight="118.0" prefWidth="260.0" text="Enter one word to be the new category" textAlignment="CENTER" textFill="#e1e1e1" wrapText="true">
                         <font>
-                            <Font size="24.0" />
+                            <Font name="Monotype Corsiva" size="24.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="catField" prefHeight="28.0" prefWidth="286.0">
+                    <TextField fx:id="catField" prefHeight="28.0" prefWidth="286.0" style="-fx-background-color: #86D8C3; -fx-prompt-text-fill: blue; -fx-text-fill: black;">
                         <VBox.margin>
                             <Insets top="10.0" />
                         </VBox.margin>
                     </TextField>
                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                         <children>
-                            <Button fx:id="back" mnemonicParsing="false" text="Back" textFill="RED" />
-                            <Button fx:id="enter" mnemonicParsing="false" text="Enter" textFill="#32fc00">
+                            <Button fx:id="back" mnemonicParsing="false" style="-fx-background-color: rEd;" text="Back" textFill="#e1e1e1" />
+                            <Button fx:id="enter" mnemonicParsing="false" style="-fx-background-color: #2cbf07;" text="Enter" textFill="#e1e1e1">
                                 <HBox.margin>
                                     <Insets left="20.0" />
                                 </HBox.margin>

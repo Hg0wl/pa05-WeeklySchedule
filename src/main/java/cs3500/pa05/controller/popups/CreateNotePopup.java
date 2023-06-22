@@ -9,6 +9,9 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+/**
+ * class to create a note popup
+ */
 public class CreateNotePopup extends Popup {
 
   FXMLLoader loader;

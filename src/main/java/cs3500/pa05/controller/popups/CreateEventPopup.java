@@ -46,13 +46,11 @@ public class CreateEventPopup extends AbstractPopup<DayEvent> {
 
     this.nameField.setOnKeyTyped(e -> this.autoTagDetect());
     // sets the prompt text for each of the text fields
-    this.nameField.setPromptText("*required* Enter a name for the Event");
-    this.descriptionField.setPromptText("*optional* Enter a description for the Event");
-    this.dayField.setPromptText("*required* Enter a day for the Event to be on");
-    this.startTimeField
-        .setPromptText("*required* Enter a time for "
-            + "the Event to start in the form HH:MM (24 hr time)");
-    this.durationMinField.setPromptText("*required* Enter the duration of the Event in mins");
+    this.nameField.setPromptText("* Enter a name for the Event");
+    this.descriptionField.setPromptText("Enter a description for the Event");
+    this.dayField.setPromptText("* Enter a day for the Event to be on");
+    this.startTimeField.setPromptText("* Enter the Event Start time (HH:MM 24h)");
+    this.durationMinField.setPromptText("* Enter the duration of the Event in mins");
     this.categoryField.setItems(FXCollections.observableList(categories));
 
     this.enter.setOnAction(e -> handleEnterButton(listEvent));
