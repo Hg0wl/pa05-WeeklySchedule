@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * Controls the validation and verification of entering the password
  */
-public class PasswordController {
+public class PasswordController implements ControlScene {
 
   private final String password;
   private Stage stage;
@@ -37,6 +37,7 @@ public class PasswordController {
   /**
    * Initializes the action of the submit button
    */
+  @Override
   public void run() {
     this.initEvents();
 

@@ -1,5 +1,6 @@
 package cs3500.pa05.view;
 
+import cs3500.pa05.controller.ControlScene;
 import cs3500.pa05.controller.SplashScreenController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ public class SplashScreen implements ViewScene {
    *
    * @param controller which is the controller that controls the week views
    */
-  public SplashScreen(SplashScreenController controller) {
+  public SplashScreen(ControlScene controller) {
     this.loader = new FXMLLoader();
 
     this.loader.setLocation(getClass().getClassLoader().getResource("splashscreen.fxml"));

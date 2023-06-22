@@ -1,4 +1,5 @@
-Pitch: Our application is a great choice for keeping track of a week's appointments, both your tasks and events. Create
+# Pitch: 
+Our application is a great choice for keeping track of a week's appointments, both your tasks and events. Create
     a new file or open a previously created one from the open screen and decide to keep your previous max events or
     tasks or override then with a simple click a button. Keep your weekly journal secure with your own password. Create
     new categories from the week view, then automatically select it by typing it into the name of a new task or event
@@ -10,7 +11,6 @@ Pitch: Our application is a great choice for keeping track of a week's appointme
     information!
 
 GUI Screenshot: ![GUIScreenshot.jpg](GUIScreenshot.png)
-
 
 # SOLID Examples: 
 
@@ -47,7 +47,12 @@ has a supported implementation, thus not violating Interface Segregation (as in,
 forced to implement methods promised in the interface's contract).
 
 # Dependency Inversion Principle:
-
+In our controller module we have the ControlScene interface which contains a simple run() method, but allows all of our 
+Views with FXML loaders to take in any of the different controllers, which follows the Dependency Inversion principle,
+such that the view classes depend on the abstraction of the ControlScene rather than the individual controller classes.
+The views for the Password, Open File, and Splash Screen views all take in a controller object as a means to set the 
+controller for the FXML loader and allow the set class to control the loaded FXML files. In our implementation, these 
+views could take in any ControlScene implementations. 
 
 
 How to extend program further (with features we did not decide to implement): 

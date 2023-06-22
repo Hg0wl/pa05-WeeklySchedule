@@ -1,5 +1,6 @@
 package cs3500.pa05.view;
 
+import cs3500.pa05.controller.ControlScene;
 import cs3500.pa05.controller.OpenController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ public class ViewOpenFile implements ViewScene {
    *
    * @param controller which is the controller that controls the week views
    */
-  public ViewOpenFile(OpenController controller) {
+  public ViewOpenFile(ControlScene controller) {
     this.loader = new FXMLLoader();
 
     this.loader.setLocation(getClass().getClassLoader().getResource("openFile.fxml"));

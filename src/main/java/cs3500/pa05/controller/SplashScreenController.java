@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 /**
  * Represents a controller for the splash screen
  */
-public class SplashScreenController {
+public class SplashScreenController implements ControlScene {
 
   private Stage stage;
   @FXML
