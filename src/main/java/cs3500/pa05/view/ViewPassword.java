@@ -1,5 +1,6 @@
 package cs3500.pa05.view;
 
+import cs3500.pa05.controller.ControlScene;
 import cs3500.pa05.controller.PasswordController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ public class ViewPassword implements ViewScene {
    *
    * @param controller which is the controller that controls the week views
    */
-  public ViewPassword(PasswordController controller) {
+  public ViewPassword(ControlScene controller) {
     this.loader = new FXMLLoader();
 
     this.loader.setLocation(getClass().getClassLoader().getResource("password.fxml"));

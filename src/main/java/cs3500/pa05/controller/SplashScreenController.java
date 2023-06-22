@@ -25,6 +25,7 @@ public class SplashScreenController implements ControlScene {
   /**
    * Runs the controller
    */
+  @Override
   public void run() {
     splash.setOnMouseClicked(e -> stage.hide());
   }

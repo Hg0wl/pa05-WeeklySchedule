@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 /**
  * Class for controlling the opening of a .bujo file or creating a new .bujo file
  */
-public class OpenController {
+public class OpenController implements ControlScene {
 
   @FXML
   private TextField fileNameTextField;
@@ -54,6 +54,7 @@ public class OpenController {
   /**
    * Starts and runs the controller
    */
+  @Override
   public void run() {
     initEvents();
   }
