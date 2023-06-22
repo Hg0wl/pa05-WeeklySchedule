@@ -1,6 +1,5 @@
 package cs3500.pa05.view;
 
-import cs3500.pa05.controller.ControlJournal;
 import cs3500.pa05.controller.WeekController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +8,7 @@ import javafx.scene.Scene;
 /**
  * An Implementation of viewing the week
  */
-public class ViewWeekImpl implements ViewWeek {
+public class ViewWeekImpl implements ViewScene {
 
   private final FXMLLoader loader;
 

@@ -1,4 +1,4 @@
-package cs3500.pa05.controller;
+package cs3500.pa05.controller.popups;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,8 +21,6 @@ public class CreateCategoryPopup extends Popup {
   private Button enter;
   @FXML
   private TextField catField;
-
-  private List<String> categories;
 
   /**
    * Displays the popup for creating a new category

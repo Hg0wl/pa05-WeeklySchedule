@@ -15,7 +15,7 @@ public class JsonUtils {
    * @throws IllegalArgumentException if the record could not be converted correctly
    */
   public static JsonNode serializeRecord(Record record) throws IllegalArgumentException {
-   try {
+    try {
       ObjectMapper mapper = new ObjectMapper();
       return mapper.convertValue(record, JsonNode.class);
     } catch (IllegalArgumentException e) {

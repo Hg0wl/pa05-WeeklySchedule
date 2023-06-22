@@ -1,4 +1,4 @@
-package cs3500.pa05.controller;
+package cs3500.pa05.controller.popups;
 
 import cs3500.pa05.model.CompleteStatus;
 import cs3500.pa05.model.DayTask;
@@ -6,9 +6,7 @@ import cs3500.pa05.model.DaysOfWeek;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import javafx.beans.binding.ListExpression;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
@@ -46,26 +44,11 @@ public class CreateTaskPopup extends AbstractPopup<DayTask> {
     this.show(stage);
   }
 
-  private void handleEnterButton(List<DayTask> listTask ) {
-    DayTask task = this.createNew();
-    System.out.println("enter button after creation");
-
-    if (Objects.nonNull(task)) {
-      listTask.add(task);
-      this.hide();
-      System.out.println("should be hidden after valid inputs");
-    }
-  }
-
   /**
-   * Handles when the enter button is pressed
+   * Used to create a new DayTask object. Returns null if arguments are invalid.
+   *
+   * @return either a null or a new DayTask object
    */
-  private void handleBackButton() {
-    this.hide();
-    System.out.println("hide");
-  }
-
-
   @Override
   protected DayTask createNew() {
     String name = this.nameField.getCharacters().toString();

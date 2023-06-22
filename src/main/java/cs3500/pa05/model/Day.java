@@ -69,7 +69,8 @@ public class Day {
    */
   public void addEvent(DayEvent event) {
     if (event.getDay() != this.day) {
-      throw new IllegalArgumentException(this.day.toString() + " is not the day specified for the event");
+      throw new IllegalArgumentException(this.day.toString()
+          + " is not the day specified for the event");
     }
     this.events.add(event);
   }
@@ -96,7 +97,8 @@ public class Day {
    */
   public void addTask(DayTask task) {
     if (task.getDay() != this.day) {
-      throw new IllegalArgumentException(this.day.toString() + " is not the day specified for the task");
+      throw new IllegalArgumentException(this.day.toString()
+          + " is not the day specified for the task");
     }
     this.tasks.add(task);
   }
@@ -110,7 +112,7 @@ public class Day {
     ArrayList<DayTask> copy = new ArrayList<>();
     for (DayTask task : this.tasks) {
       DayTask newTask = new DayTask(task.getName(), task.getDescription(), task.getDay(),
-      task.getCompleteStatus());
+          task.getCompleteStatus());
       copy.add(newTask);
     }
     return copy;

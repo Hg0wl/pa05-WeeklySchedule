@@ -1,9 +1,6 @@
 package cs3500.pa05;
 
 import cs3500.pa05.controller.ControlJournal;
-import cs3500.pa05.controller.EventLabel;
-import cs3500.pa05.model.DayEvent;
-import cs3500.pa05.model.DaysOfWeek;
 import javafx.application.Application;
 
 /**

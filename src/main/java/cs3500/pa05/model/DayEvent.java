@@ -67,7 +67,7 @@ public class DayEvent {
    */
  // @JsonCreator
   public DayEvent(String name, DaysOfWeek day, String startTime, String durationMin) {
-    this(name, "", day, startTime, durationMin, "") ;
+    this(name, "", day, startTime, durationMin, "");
   }
 
   /**
@@ -82,7 +82,7 @@ public class DayEvent {
   //@JsonCreator
   public DayEvent(
       String name, String description, DaysOfWeek day, String startTime, String durationMin) {
-    this(name, description, day, startTime, durationMin, "" );
+    this(name, description, day, startTime, durationMin, "");
   }
 
   /**

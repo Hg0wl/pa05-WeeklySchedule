@@ -1,16 +1,13 @@
 package cs3500.pa05.controller;
 
-import cs3500.pa05.model.BujoOperator;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DaysOfWeek;
 import cs3500.pa05.model.json.NotesJson;
 import cs3500.pa05.model.json.PlannerJson;
 import cs3500.pa05.model.json.WeekJson;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -88,15 +85,17 @@ public class OpenController {
     if (planner.week() == null && planner.notes() == null) {
       // create a new list of days to pass back through the lists
       List<Day> days = new ArrayList<>();
-      for (DaysOfWeek DaysOfWeek : DaysOfWeek.values()) {
-        days.add(new Day(maxEvents, maxTasks, DaysOfWeek));
+      for (DaysOfWeek daysOfWeek : DaysOfWeek.values()) {
+        days.add(new Day(maxEvents, maxTasks, daysOfWeek));
       }
       NotesJson notes = new NotesJson("");
-      WeekJson week = new WeekJson(days, pathName);
-      listPlanner.add(new PlannerJson(week, notes));
+      WeekJson week = new WeekJson(days, new ArrayList<>(List.of("")), pathName);
+      listPlanner.add(new PlannerJson(week, notes, ""));
       maximums.add(this.eventMaxSpinner.getValue());
       maximums.add(this.taskMaxSpinner.getValue());
+
     } else {
+      // use the previously created planner
       listPlanner.add(planner);
       // if the override box is checked, then the file will be updated with the newly given values
       if (this.overrideCheckbox.isSelected()) {

@@ -13,10 +13,14 @@ module cs3500.pa05 {
   opens cs3500.pa05 to javafx.fxml;
   exports cs3500.pa05;
   exports cs3500.pa05.model;
-  opens cs3500.pa05.model to com.fasterxml.jackson.databind;
   exports cs3500.pa05.view;
   exports cs3500.pa05.controller;
-  opens cs3500.pa05.controller to javafx.fxml;
   exports cs3500.pa05.model.json;
   opens cs3500.pa05.model.json to javafx.fxml;
+  exports cs3500.pa05.controller.popups;
+  opens cs3500.pa05.controller.popups to javafx.fxml;
+  opens cs3500.pa05.model to com.fasterxml.jackson.databind, javafx.fxml;
+  opens cs3500.pa05.controller to com.fasterxml.jackson.databind, javafx.fxml;
+  exports cs3500.pa05.controller.fxadapters;
+  opens cs3500.pa05.controller.fxadapters to com.fasterxml.jackson.databind, javafx.fxml;
 }

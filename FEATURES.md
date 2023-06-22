@@ -15,6 +15,8 @@
 - Progress Bar
 
 ## Section 4: Quality of Life
+- Auto #tags
+- Links
 
 
 ## Section 5: Extra Credit

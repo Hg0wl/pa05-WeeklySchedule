@@ -1,6 +1,13 @@
 package cs3500.pa05.controller;
 
-import cs3500.pa05.model.BujoOperator;
+import cs3500.pa05.controller.fxadapters.EventLabel;
+import cs3500.pa05.controller.fxadapters.TaskCheckbox;
+import cs3500.pa05.controller.fxadapters.TaskQueueLabel;
+import cs3500.pa05.controller.popups.AbstractPopup;
+import cs3500.pa05.controller.popups.CreateCategoryPopup;
+import cs3500.pa05.controller.popups.CreateEventPopup;
+import cs3500.pa05.controller.popups.CreateNotePopup;
+import cs3500.pa05.controller.popups.CreateTaskPopup;
 import cs3500.pa05.model.CompleteStatus;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayEvent;
@@ -21,8 +28,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -108,9 +113,10 @@ public class WeekController {
   private List<Day> days;
   private Stage stage;
   private final String nameOfWeek;
-  private final List<String> cats = new ArrayList<String>(List.of(""));
+  private final List<String> cats;
   private int maxEvents;
   private int maxTasks;
+  private final String password;
 
   /**
    * Constructor for WeekController
@@ -118,10 +124,12 @@ public class WeekController {
    * @param createdEvents list of events that are displayed in the week
    */
   public WeekController(List<DayEvent> createdEvents, List<DayTask> createdTasks,
-                        String weekName) {
+                        String weekName, List<String> categories, String password)  {
     this.createdEvents = createdEvents;
     this.createdTasks = createdTasks;
     this.nameOfWeek = weekName;
+    this.cats = categories;
+    this.password = password;
   }
 
   /**
@@ -141,15 +149,15 @@ public class WeekController {
     this.handleReload();
     Map<DaysOfWeek, List<DayEvent>> listOfEventsForEachDay = this.mapEventsToDays();
     Map<DaysOfWeek, List<DayTask>> listOfTasksForEachDay = this.mapTasksToDays();
-    List<Day> dayList = new ArrayList<Day>();
+    List<Day> dayList = new ArrayList<>();
     for (DaysOfWeek day : DaysOfWeek.values()) {
       dayList.add(new Day(this.maxEvents, this.maxTasks, day,
           listOfEventsForEachDay.get(day), listOfTasksForEachDay.get(day)));
     }
 
-    WeekJson week = new WeekJson(dayList, this.nameOfWeek);
+    WeekJson week = new WeekJson(dayList, this.cats, this.nameOfWeek);
     NotesJson notesJson = new NotesJson(this.notes.get(0));
-    PlannerJson planner = new PlannerJson(week, notesJson);
+    PlannerJson planner = new PlannerJson(week, notesJson, this.password);
     StringBuilder pathName = new StringBuilder(nameOfWeek).append(".bujo");
     BujoOperator.write(planner, Path.of(pathName.toString()));
   }
@@ -158,7 +166,7 @@ public class WeekController {
 
     Map<DaysOfWeek, List<DayEvent>> output = new EnumMap<>(DaysOfWeek.class);
     for (DaysOfWeek day : DaysOfWeek.values()) {
-      output.put(day, new ArrayList<DayEvent>());
+      output.put(day, new ArrayList<>());
     }
     for (DayEvent event : this.createdEvents) {
       DaysOfWeek curDay = event.getDay();
@@ -170,7 +178,7 @@ public class WeekController {
   private Map<DaysOfWeek, List<DayTask>> mapTasksToDays() {
     Map<DaysOfWeek, List<DayTask>> output = new EnumMap<>(DaysOfWeek.class);
     for (DaysOfWeek day : DaysOfWeek.values()) {
-      output.put(day, new ArrayList<DayTask>());
+      output.put(day, new ArrayList<>());
     }
     for (DayTask task : this.createdTasks) {
       DaysOfWeek curDay = task.getDay();
@@ -219,7 +227,7 @@ public class WeekController {
     taskPopup.setOnHidden(e -> {
       stage.setScene(current);
       this.addToWeek();
-      this.handleReload();});
+      this.handleReload(); });
 
     taskPopup.displayPopup(createdTasks, stage, cats);
 
@@ -261,7 +269,8 @@ public class WeekController {
 
   private void checkCommitment() {
     if (this.createdTasks.size() > maxTasks || this.createdEvents.size() > maxEvents) {
-      this.commitmentWarning.setText("COMMITMENT WARNING: You might have too much going on this week");
+      this.commitmentWarning
+          .setText("COMMITMENT WARNING: You might have too much going on this week");
     } else {
       this.commitmentWarning.setText("");
     }

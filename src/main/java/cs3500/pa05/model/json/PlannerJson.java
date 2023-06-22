@@ -10,5 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public record PlannerJson(
     @JsonProperty("week") WeekJson week,
-    @JsonProperty("notes") NotesJson notes) {
+    @JsonProperty("notes") NotesJson notes,
+    @JsonProperty("password") String password) {
 }

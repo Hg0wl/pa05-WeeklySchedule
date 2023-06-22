@@ -68,8 +68,6 @@ public class BujoOperator {
    * @return a new empty PlannerRecord
    */
   private static PlannerJson createNewBujo(Path path) {
-    String fileName = path.getFileName().toString();
-
-    return new PlannerJson(null, null);
+    return new PlannerJson(null, null, null);
   }
 }

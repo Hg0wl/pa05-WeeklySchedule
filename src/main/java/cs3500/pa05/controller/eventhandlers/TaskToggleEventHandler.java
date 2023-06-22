@@ -1,4 +1,4 @@
-package cs3500.pa05.controller.eventHandlers;
+package cs3500.pa05.controller.eventhandlers;
 
 import cs3500.pa05.model.DayTask;
 import javafx.event.ActionEvent;

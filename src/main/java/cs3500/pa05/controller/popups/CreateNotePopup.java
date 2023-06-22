@@ -1,4 +1,4 @@
-package cs3500.pa05.controller;
+package cs3500.pa05.controller.popups;
 
 import java.io.IOException;
 import java.util.List;

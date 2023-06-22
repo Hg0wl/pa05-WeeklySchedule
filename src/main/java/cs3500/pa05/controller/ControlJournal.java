@@ -4,7 +4,10 @@ import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayEvent;
 import cs3500.pa05.model.DayTask;
 import cs3500.pa05.model.json.PlannerJson;
-import cs3500.pa05.view.ViewWeek;
+import cs3500.pa05.view.SplashScreen;
+import cs3500.pa05.view.ViewOpenFile;
+import cs3500.pa05.view.ViewPassword;
+import cs3500.pa05.view.ViewScene;
 import cs3500.pa05.view.ViewWeekImpl;
 import cs3500.pa05.view.ViewOpenFile;
 import java.util.ArrayList;
@@ -18,21 +21,21 @@ import javafx.stage.Stage;
  */
 public class ControlJournal extends Application {
 
-  private ViewWeek view;
+  private ViewScene view;
   private final ArrayList<DayEvent> eventsList = new ArrayList<>();
   private WeekController weekController;
-  private final ViewOpenFile openFileView;
+  private final ViewScene viewOpenFile;
   private final List<PlannerJson> planners = new ArrayList<>();
   private final List<Integer> maximums = new ArrayList<>();
   private final OpenController openController = new OpenController(planners, maximums);
-
+  private final List<String> returnedPasswords = new ArrayList<>();
 
   /**
    * Creates a new Controller
    */
   public ControlJournal() {
 
-    this.openFileView = new ViewOpenFile(this.openController);
+    this.viewOpenFile = new ViewOpenFile(this.openController);
   }
 
   @Override
@@ -41,19 +44,24 @@ public class ControlJournal extends Application {
 
 
     try {
+      this.openFile();
+      this.openSplashScreen();
 
-      Stage openFileStage = new Stage();
-      this.openController.setStage(openFileStage);
-      openFileStage.setScene(this.openFileView.load());
-      this.openController.run();
-      openFileStage.showAndWait();
+
+      String password = planners.get(0).password();
+      this.validatePassword(password);
 
       String weekName = planners.get(0).week().name();
 
       List<DayEvent> events = extractEvents(planners.get(0));
       List<DayTask> tasks = extractTasks(planners.get(0));
+      List<String> categories = planners.get(0).week().categories();
 
-      weekController = new WeekController(events, tasks, weekName);
+      if (!returnedPasswords.isEmpty()) {
+        password = this.returnedPasswords.get(0);
+      }
+
+      weekController = new WeekController(events, tasks, weekName, categories, password);
       this.weekController.setStage(stage);
       this.view = new ViewWeekImpl(this.weekController);
 
@@ -90,6 +98,26 @@ public class ControlJournal extends Application {
       tasks.addAll(eachDay.getTasks());
     }
     return tasks;
+  }
+
+  private void openFile() {
+    Stage openFileStage = new Stage();
+    this.openController.setStage(openFileStage);
+    openFileStage.setScene(this.viewOpenFile.load());
+    this.openController.run();
+    openFileStage.showAndWait();
+
+  }
+
+  private void openSplashScreen() {
+    SplashScreenController splashController = new SplashScreenController();
+    ViewScene splashScene = new SplashScreen(splashController);
+
+    Stage splashStage = new Stage();
+    splashController.setStage(splashStage);
+    splashStage.setScene(splashScene.load());
+    splashController.run();
+    splashStage.showAndWait();
   }
 
 }

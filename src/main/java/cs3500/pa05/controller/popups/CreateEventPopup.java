@@ -1,4 +1,4 @@
-package cs3500.pa05.controller;
+package cs3500.pa05.controller.popups;
 
 import cs3500.pa05.model.DayEvent;
 import cs3500.pa05.model.DaysOfWeek;

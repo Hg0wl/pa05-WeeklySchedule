@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import cs3500.pa05.model.json.JsonUtils;
+import cs3500.pa05.controller.BujoOperator;
 import cs3500.pa05.model.json.NotesJson;
 import cs3500.pa05.model.json.PlannerJson;
 import cs3500.pa05.model.json.WeekJson;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,8 +75,10 @@ class BujoOperatorTest {
     monday.addEvent(mondayEvent);
     monday.addTask(mondayTask1);
     monday.addTask(mondayTask2);
-    smallWeek = new WeekJson(List.of(monday), "week of june 18");
-    smallPlanner = new PlannerJson(smallWeek, notes);
+    List<String> categories = new ArrayList<>(List.of("cats"));
+    smallWeek = new WeekJson(List.of(monday), categories, "week of june 18");
+    String password = "cats";
+    smallPlanner = new PlannerJson(smallWeek, notes, password);
     try {
       Files.write(smallWeekPath, new byte[] {});
     } catch (IOException e) {

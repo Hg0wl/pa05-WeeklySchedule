@@ -1,9 +1,8 @@
-package cs3500.pa05.controller;
+package cs3500.pa05.controller.popups;
 
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -38,7 +37,7 @@ public abstract class AbstractPopup<T> extends Popup {
    *
    * @param list of T which will be updated by button presses in the popup
    */
-  abstract public void displayPopup(List<T> list, Stage stage, List<String> cats);
+  public abstract void displayPopup(List<T> list, Stage stage, List<String> cats);
 
   /**
    * Attempts to create an object T out of the information provided in the fields.
@@ -50,7 +49,7 @@ public abstract class AbstractPopup<T> extends Popup {
   /**
    * Clears all the fields
    */
-  abstract protected void clearAll();
+  protected abstract void clearAll();
 
   protected void autoTagDetect() {
     String input = this.nameField.getText();
