@@ -56,7 +56,6 @@ public enum DaysOfWeek {
     } else if (DaysOfWeek.SATURDAY.name().equals(upCaseDay)) {
       return DaysOfWeek.SATURDAY;
     } else {
-      System.out.println();
       throw new IllegalArgumentException(day + " is not a valid day of the week");
     }
   }
